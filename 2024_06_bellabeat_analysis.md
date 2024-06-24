@@ -58,6 +58,7 @@ plt.legend(title='User type percentage',
 plt.title('How active are the users?', size=12)
 plt.show()
 ```
+![Types of user](assets/01-activitylevels.png)
 
 ### Users' habits
 
@@ -78,7 +79,7 @@ daily_sleep = (act_sleep.groupby('weekday')
                .reindex(days))
 daily_sleep.rename(columns={'totalsteps':'avgsteps', 'hoursasleep': 'avg_hoursasleep'},inplace=True)
 ```
-
+![Steps and sleep time per day of week](assets/02-ss_dayofweek.png)
 
 ```
 # finding how the physical activity changes throughout the day. Registered steps per hour.
@@ -96,8 +97,7 @@ ax.set(xlabel='Time of day', ylabel='Average steps')
 plt.title('Average steps throughout the day')
 plt.show()
 ```
-![Average steps count change by hour](https://github.com/lugmenn/portfolio/assets/161055629/fe638bdc-37b1-4a73-ba49-974d50fe2230)
-
+![Average steps count change by hour](assets/03-steps_per_hour.png)
 
 ### How much are the devices used each day?
 
@@ -129,6 +129,7 @@ usagerate = dailyact_clean.groupby('worn')['id'].count().to_frame()
 usagerate.rename(columns={'id':'total days'},inplace=True)
 usagerate['total percentage'] = usagerate['total days']/usagerate['total days'].sum()
 ```
+![Daily use of device](assets/04-daily_usage.png)
 
 ### Sharing Insights
 
