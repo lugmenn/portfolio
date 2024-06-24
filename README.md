@@ -4,7 +4,8 @@ Hello! In this page I present some of the data analysis projects I've completed 
 
 ## 1. Change in profits in the real estate industry
 
-[Data extraction using SQL queries](2024_03_watershed_database)
+[Data extraction using SQL queries](2024_03_watershed_database) 
+
 [Tableau dashboard showcasing profits with adjustable parameters](https://public.tableau.com/views/WatershedProject_17105411802030/Dashboard1?:language=es-ES&:sid=&:display_count=n&:origin=viz_share_link)
 
 Rough estimate in the changes of profits after converting certain long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location and their expected occupancy rates throughout the year.
