@@ -96,6 +96,8 @@ ax.set(xlabel='Time of day', ylabel='Average steps')
 plt.title('Average steps throughout the day')
 plt.show()
 ```
+![Average steps count change by hour](https://github.com/lugmenn/portfolio/assets/161055629/fe638bdc-37b1-4a73-ba49-974d50fe2230)
+
 
 ### How much are the devices used each day?
 
