@@ -1,9 +1,13 @@
 ## Improving the Bellabeat devices functionalities and user engagement
 
-In this project, the main goal was to study the way some users use smart devices intended for health improvement, similar to some of the Bellabeat products. 
+[Click here](https://github.com/lugmenn/portfolio/blob/main/Fitbit_Analysis.ipynb) to read the full project report (available in Spanish).
+
+In this project, the main goal was to study the way some users use smart devices intended for health improvement, similar to some of the Bellabeat products.
+
 Data from 33 FitBit users collected in a two month period was analyzed in order to make some recommendations regarding the functionalities of the wearable devices and the way these devices were used in a daily manner.
 These records included time spent in activity or at rest, the intensity levels of that activity, recorded total daily number of steps and steps per hour during the day, total time in bed and hours asleep.
-In order to determine the usage of the devices, cleaned and transformed data from the different available tables was merged into dataframes, where data was grouped, categorized and aggregated with summary statistics. [Read the full project report here](https://github.com/lugmenn/portfolio/blob/main/Fitbit_Analysis.ipynb) (available in Spanish).
+
+In order to determine the usage of the devices, cleaned and transformed data from the different available tables was merged into dataframes, where data was grouped, categorized and aggregated with summary statistics.
 
 ### Who are the users?
 
