@@ -8,6 +8,8 @@ Each of the records was contained in its individual row. The input also containe
 
 **Note:** _In this page, I explain the thought process I followed, along with the functions used for this. The cells of code contain the formula for row 5 (first row of records on the file). The same formulas were applied on the rows beneath it._
 
+![Raw data](assets/p06- data cleansing excel/08- transform.png)
+
 First, in order to identify invisible characters at the end of the string, the **CODE** and **RIGHT** functions were used, and then **CLEAN** to remove all non-printing characters. After this, the **CODE** function shows there is a character with an **ASCII code** of _32_, which means there is an extra white space at the end of the string. This was removed later.
 
 
