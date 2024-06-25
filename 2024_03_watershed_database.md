@@ -2,7 +2,7 @@
 
 For this project, I used MySQL to extract data from a database that included some properties' records from Watershed Properties used as long\-term rentals, regarding their location and building characteristics, as well as yearly profits and occupancy rate. Another table included records from some other properties used as short term rentals, including their characteristics and rates per night.
 
-Through SQL queries, the data was transformed in order to be merged into a single table and select the short\-term rentals with similar characteristics as the ones on the list of long\-term rentals from Watershed, having both the yearly profits and the estimate rates per night needed to complete the analysis and the profits' estimates needed to decide which properties would increase total profits if they were to be converted into shot term rentals. This analysis was completed on Excel \(you can [read more here](https://www.datascienceportfol.io/lugmenn/projects/0)\).
+Through SQL queries, the data was explored and transformed before being merged into a single table needed for the analysis completion and calculate the estimated increase in profits needed to decide which properties should be converted into short-term rentals. This analysis was completed on Excel and Tableau. \(you can [read more here](https://www.datascienceportfol.io/lugmenn/projects/0)\).
 
 ![watershed schema](assets/p06- data cleansing excel/WSP_schema.png "Database Schema")
 
@@ -31,7 +31,7 @@ I explored the structure of the data contained in each of the tables in order to
 
 
 ```sql
-# query used for the location table. Similar queries were used in the rest of the tables in the database
+-- query used for the location table. Similar queries were used in the rest of the tables in the database
 SELECT * 
 FROM capstone.location
 LIMIT 50;
@@ -45,14 +45,14 @@ GROUP BY state;
 
 ```
 
-### DATA TRANSFORMATION
+### DATA TRANSFORMATION AND JOINING TABLES
 
 After getting to comprehend better the available data, I decided the available short-term rental properties data (_st_property_) should be unified.
 First, it was necessary to fully understand the records on the _rental_date_ field.
 
 ```sql
 SELECT
-	rental_date,
+    rental_date,
     st_property	
 FROM capstone.st_rental_dates
 WHERE st_property LIKE '%ST100%';
@@ -92,9 +92,14 @@ ORDER BY Occupancy_rate_2015 DESC;
 
 ```
 
-#-- USE THE PREVIOUS QUERY AND JOIN WITH THE OTHER TABLES TO ADD INFORMATION ABOUT THOSE PROPERTIES
-#-- FIRST, ADD THE LOCATION INFO
+Using the previous query to generate new data, additional information was added for each property.
 
+Location data was added first.
+
+
+```sql
+
+-- USING THE PREVIOUS QUERY AS A SUBQUERY TO ADD THE TRANSFORMED DATA INTO THE ORIGINAL TABLES
 SELECT DISTINCT
     p.st_property_id,
     p.location,
@@ -113,7 +118,7 @@ INNER JOIN (
         ) AS occupancy_rate 
 ON (p.st_property_id=occupancy_rate.st_property);
 
--- ADD DETAILED LOCATION INFO TO THE LAST TABLE
+-- ADD DETAILED LOCATION INFO
 
 SELECT DISTINCT
     p.st_property_id,
@@ -137,8 +142,15 @@ FROM
     ) AS occupancy_rate
     ON l.location_id=p.location AND p.st_property_id=occupancy_rate.st_property;
 
-#-- ADD THE DETAILED PROPERTIES AND NIGHTLY RENTAL PRICE INFO TO THE LAST TABLE
+```
 
+Next step was to merge the generated data with the information about the properties and their rates per night. To make the code more readable in the next step, **a temporary table was created** (_st_properties_2015_).
+
+```sql
+-- ADD THE DETAILED PROPERTIES AND NIGHTLY RENTAL PRICE INFO TO THE LAST TABLE
+-- Save the data in a TEMPORARY TABLE
+
+CREATE TEMPORARY TABLE st_properties_2015
 SELECT DISTINCT
     p.st_property_id,
     p.location,
@@ -171,7 +183,10 @@ FROM
         AND rp.location=p.location AND rp.property_type=p.property_type
         AND p.property_type=pt.property_type_id;
 
+```
+Followed by the joining of tables containing the summarized data for the short term properties with the table cointaining data for the Watershed long-term rental properties that will be analyzed. The **primary keys** used to merge both tables were based on the property type (which is defined by each property's characteristics) and the location (rental costs depend on those two factors, among others, so they had to match for a better comparison).
 
+```sql
 #-- COMBINE THE UNIFIED SHORT-TERM PROPERTIES DATA WITH THE WATERSHED PROPERTIES (USING AN INNER JOIN)
 
 SELECT DISTINCT
@@ -189,41 +204,10 @@ SELECT DISTINCT
     st_properties_2015.sample_nightly_rent_price AS nightly_rent_price,
     st_properties_2015.number_rentedDays_2015,
     st_properties_2015.Occupancy_rate_2015
-FROM watershed_property_info w JOIN (
-            SELECT DISTINCT
-                p.st_property_id,
-                p.location,
-                p.property_type,
-                l.city,
-                l.state,
-                l.zipcode,
-                pt.apt_house,
-                pt.num_bedrooms,
-                pt.kitchen,
-                pt.shared,
-                rp.sample_nightly_rent_price,
-                occupancy_rate.number_rentedDays_2015,
-                occupancy_rate.Occupancy_rate_2015
-            FROM 
-                capstone.st_property_info p JOIN location l 
-                JOIN property_type pt
-                JOIN st_rental_prices rp
-                JOIN (
-                    SELECT DISTINCT
-                        rd.st_property,
-                        COUNT(rd.rental_date) AS Number_rentedDays_2015,
-                        ROUND((COUNT(rd.rental_date)/365*100),2) AS Occupancy_rate_2015
-                    FROM capstone.st_rental_dates rd
-                    WHERE YEAR(rd.rental_date)=2015
-                    GROUP BY rd.st_property
-                ) AS occupancy_rate
-                ON l.location_id=p.location 
-                    AND p.st_property_id=occupancy_rate.st_property
-                    AND rp.location=p.location AND rp.property_type=p.property_type
-                    AND p.property_type=pt.property_type_id
-    ) AS st_properties_2015
+FROM watershed_property_info w JOIN st_properties_2015
         ON w.location=st_properties_2015.location 
         AND w.property_type=st_properties_2015.property_type;
 
-#-- EXPORT THE GENERATED TABLE FOR ANALYSIS IN EXCEL, R AND/OR A QUICK REVIEW IN TABLEAU
 ```
+
+With this last step, the data was finally ready to be extracted and loaded into an analysis software. For this project, the data continued to be transformed and analyzed in Microsoft Excel and tableau Public.
