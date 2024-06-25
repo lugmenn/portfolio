@@ -44,11 +44,11 @@ The original spreadsheet file included records of monthly sales , but in an unus
 
 ## Courses and Certificates
 
-[Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (_June 2024_)
+* [Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (_June 2024_)
 
-[Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (_January 2024_)
+* [Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (_January 2024_)
 
-[Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google (December 2023)
+* [Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google (December 2023)
 
 More coming soon.
 Thank you for browsing.
