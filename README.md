@@ -1,8 +1,12 @@
 # Data Analysis
 
-Hello! In this page I present some of the data analysis projects I've completed using a variety of tools, such as Microsoft Excel, MySQL, Tableau, PowerBI and Python.
+Hello there!
 
-## 1. Change in profits in the real estate industry
+Technical Skills: Excel, SQL, Tableau, PowerBI, Google Cloud Platform, Python, R
+
+## Projects
+
+### 1. Change in profits in the real estate industry
 
 [Data extraction using SQL queries](2024_03_watershed_database) 
 
@@ -10,7 +14,7 @@ Hello! In this page I present some of the data analysis projects I've completed 
 
 Rough estimate in the changes of profits after converting certain long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location and their expected occupancy rates throughout the year.
 
-## 2. Improving the Bellabeat devices and their user engagement
+### 2. Improving the Bellabeat devices and their user engagement
 
 [Data ETL report]
 
@@ -18,7 +22,35 @@ Rough estimate in the changes of profits after converting certain long-term rent
 
 Shared insights and recommended business actions based on the analysis of activity data recorded by 33 users of FitBit devices during two months as a way of finding growth opportunities in Bellabeat's products for health improvement and some possible roads to increase user engamement.
 
+### 3. Finding the correlation between different North-American Metropolitan Areas' population and their Big Four teams' Win/Lose ratio
+
+[NFL teams Win/Lose ratio correlation analysis]()
+
+The Big Four refers to the major professional sports leagues across North America (USA and Canada). These leagues include NFL, NBA, MBL and NHL, which contain 30 to 32 teams each, and are mostly based on the top populated metropolitan areas in both countries. This analysis consisted of finding through the Pearson correlation how closely related is the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team to be more likely to win if the city it is based on is big, is the opposite to be expected or is there no relationship at all?
+
+### 4. 
+
+### 5. Dognition
+
+### 6. Transforming raw sales data
+
+[Cleansing and transformation process in Excel]()
+
+The original file included records of each sale, but in an unusable format for processing. Here, I discuss data transformation step by step in order to generate useful data, able to be used for future data analysis.
+
+## Education
+
+BSc. Biology | Universidad Nacional Autónoma de México (July 2021)
+
+## Courses and Certificates
+
+[Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (June 2024)
+
+[Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (January 2024)
+
+[Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google (December 2023)
 
 More coming soon.
 Thank you for browsing.
+
 See you later, alligator.
