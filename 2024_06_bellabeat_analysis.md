@@ -14,7 +14,7 @@ In order to determine the usage of the devices, cleaned and transformed data fro
 Defining different types of users based on the average daily activity recorded.
 
 
-```
+```python
 # Data cleansing and the rest of the ETL process is not shown here
 
 # function definition to categorize data in the dataframe
@@ -69,7 +69,7 @@ plt.show()
 How do the users' activity and sleep vary across the week?
 
 
-```
+```python
 # extracting the names of the days of the week from each record's date
 
 act_sleep['weekday'] = act_sleep['activitydate'].dt.day_name()
@@ -85,7 +85,7 @@ daily_sleep.rename(columns={'totalsteps':'avgsteps', 'hoursasleep': 'avg_hoursas
 ```
 ![Steps and sleep time per day of week](assets/02-ss_dayofweek.png)
 
-```
+```python
 # finding how the physical activity changes throughout the day. Registered steps per hour.
 
 stepsperhour = hourlysteps.groupby('activitytime')['steptotal'].mean().to_frame().
@@ -108,7 +108,7 @@ plt.show()
 Finding out the percetage of users that used their devices all day, more than half a day o less than half a day.
 
 
-```
+```python
 # calculating the device's time of use each day and the percentage of that day (total used time/time in a day)
 
 dailyact_clean['minutes used'] = (dailyact_clean['veryactiveminutes'] + dailyact_clean['fairlyactiveminutes'] + 
