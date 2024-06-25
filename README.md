@@ -2,7 +2,7 @@
 
 Hello there!
 
-Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Google Cloud Platform**, **Python**, **R**
+Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R**, **Google Cloud Platform**
 
 ## Projects
 
