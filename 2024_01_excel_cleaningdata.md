@@ -6,9 +6,9 @@ The raw data contained 496 records of each sale, including the sold product cate
 
 Each of the records was contained in its individual row. The input also contained special non alpha-numeric characters, non-printing characters, including whitespaces, and nonbreaking spaces.
 
-**Note:** _In this page, I explain the thought process I followed, along with the functions used for this. The cells of code contain the formula for row 5 (first row of records on the file). The same formulas were applied on the rows beneath it._
-
 ![Raw data](assets/p06- data cleansing excel/08- transform.png)
+
+**Note:** _In this page, I explain the thought process I followed, along with the functions used for this. The cells of code contain the formula for row 5 (first row of records on the file). The same formulas were applied on the rows beneath it._
 
 First, in order to identify invisible characters at the end of the string, the **CODE** and **RIGHT** functions were used, and then **CLEAN** to remove all non-printing characters. After this, the **CODE** function shows there is a character with an **ASCII code** of _32_, which means there is an extra white space at the end of the string. This was removed later.
 
@@ -20,6 +20,7 @@ First, in order to identify invisible characters at the end of the string, the *
 
 =CODE(RIGHT(B5,1)) # COLUMN E FORMULA
 ```
+![nonprint](assets/p06- data cleansing excel/02-nonprinting.png)
 
 Following the cleaning of the end of the string, the special characters (slashes, underscores and extra white spaces and nonbreaking spaces) were eliminated using the **SUBSTITUTE**, **TRIM**, and **UNICHAR** functions.
 
@@ -31,8 +32,11 @@ Following the cleaning of the end of the string, the special characters (slashes
 
 =TRIM(H5) # COLUMN I FORMULA - eliminating extra white spaces
 ```
+![replacing](assets/p06- data cleansing excel/03-characters.png)
 
 The **SUBSTITUTE** function was used again to eliminate "PR" and "SP" from the string, leaving the  data ready to be extracted into individual columns.
+
+![substitute](assets/p06- data cleansing excel/04-nakeddata.png)
 
 For the data extraction, I considered it was convenient to locate the position of each space (" ") delimiting every part of the string.
 The record contains three spaces, each one of them separating the product category, the employee's first name, the date and the total amount.
@@ -59,6 +63,7 @@ Taking these spaces' positions, each part of the data in the cell was extracted 
 
 =VALUE(RIGHT(N5,LENGTH(N5)-Q5-1)) # COLUMN U - extracting the last characters and formating the string into a number
 ```
+![spaces](assets/p06- data cleansing excel/05-extract.png)
 
 Finally the extracted date was converted into a date format for an easier future analysis with the **DATE** function.
 
@@ -66,3 +71,5 @@ Finally the extracted date was converted into a date format for an easier future
 ```
 =DATE(LEFT(T5,4),MID(T5,5,2),RIGHT(T5,2)) # COLUMN V - converting the date as string into a date format
 ```
+
+![date](assets/p06- data cleansing excel/06-date.png)
