@@ -34,19 +34,19 @@ The Big Four refers to the major professional sports leagues across North Americ
 
 ### 6. Transforming raw sales data
 
-[Cleansing and transformation process in Excel]()
+[Data cleansing and transformation process in Excel](2024_01_excel_cleaningdata.md)
 
-The original file included records of each sale, but in an unusable format for processing. Here, I discuss data transformation step by step in order to generate useful data, able to be used for future data analysis.
+The original spreadsheet file included records of monthly sales , but in an unusable format for processing. Here, I discuss data transformation step by step with some Microsoft Excel functions to generate useful data, ready to be used for a future analysis.
 
 ## Education
 
-BSc. Biology | Universidad Nacional Autónoma de México (July 2021)
+B.S. Biology | Universidad Nacional Autónoma de México (_July 2021_)
 
 ## Courses and Certificates
 
-[Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (June 2024)
+[Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (_June 2024_)
 
-[Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (January 2024)
+[Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (_January 2024_)
 
 [Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google (December 2023)
 
