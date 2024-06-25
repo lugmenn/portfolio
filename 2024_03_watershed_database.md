@@ -8,7 +8,7 @@ Through SQL queries, the data was transformed in order to be merged into a singl
 
 These are some of the queries ran on MySQL to complete the data extraction and part of its transformation.
 
-EXPLORING THE AVAILABLE DATA
+### EXPLORING THE AVAILABLE DATA
 
 Reviewed each of the tables' fields contained in them.
 
@@ -44,6 +44,8 @@ FROM capstone.location
 GROUP BY state;
 
 ```
+
+### DATA TRANSFORMATION
 
 After getting to comprehend better the available data, I decided the available short-term rental properties data (_st_property_) should be unified.
 First, it was necessary to fully understand the records on the _rental_date_ field.
