@@ -27,62 +27,48 @@ SHOW columns FROM capstone.watershed_property_info;
 ```
 
 
-I explored the structure of the data contained in each of the tables in order to know if data needed to be cleaned and transformed. Additionally, I reviewd if there were any NULL Values in
+I explored the structure of the data contained in each of the tables in order to know if data needed to be cleaned and transformed. Additionally, since it was of interest to get the location of each porperty, I reviewed if there were any NULL Values in the _state_ field and summarized how many records where on each state.
 
 
 ```sql
+# query used for the location table. Similar queries were used in the rest of the tables in the database
 SELECT * 
 FROM capstone.location
 LIMIT 50;
 
-#-- REVIEW IF THERE AREN'T ANY NULL VALUES IN 'state', AND SUMMARIZE HOW MANY RECORDS EACH ONE OF THEM HAS
+
 SELECT DISTINCT 
 		state,
 		COUNT(location_id) as Number_of_records
 FROM capstone.location
 GROUP BY state;
 
-SELECT * 
-FROM capstone.property_type;
-
-SELECT * 
-FROM capstone.st_property_info
-LIMIT 50;
-
-SELECT * 
-FROM capstone.st_rental_dates
-LIMIT 50;
-
-SELECT * 
-FROM capstone.st_rental_prices
-LIMIT 50;
-
-SELECT * 
-FROM capstone.watershed_property_info;
-
 ```
 
-#-- FIRST, THE AVAILABLE SHORT-TERM RENTAL PROPERTIES (st_property) DATA WILL BE UNIFIED
-#-- FIND OUT EXACTLY WHAT rental_date REALLY MEANS
+After getting to comprehend better the available data, I decided the available short-term rental properties data (_st_property_) should be unified.
+First, it was necessary to fully understand the records on the _rental_date_ field.
 
+```sql
 SELECT
 	rental_date,
     st_property	
 FROM capstone.st_rental_dates
 WHERE st_property LIKE '%ST100%';
 
-#-- NOTICE SOME RECORDS CONTAIN CONSECUTIVE DAYS, WHILE SOME DON´T
-#-- THIS MEANS 'rental_date' REFERS TO THE SPECIFIC DAY(S) A PROPERTY WAS RENTED FOR A SHORT-TERM STAY, WHETHER IT WAS JUST ONE NIGHT OR MULTIPLE NIGHTS STAY
+```
 
-#-- FIND OUT HOW MANY TIMES EACH SHORT-TERM PROPERTY WAS OCCUPIED
+The output showed some records contained consecutive days, while some other didn't. This meant _rental_date_ referred to the specific day(s) a property was rented for a short-term stay, either a single night or more than one night, which would mean there would be multiple records of that property with consecutive dates.
 
+Next, I wanted to know how many nights each short-term property was occuppied. Since the business's goal was to evaluate pricing for rentals during 2015, the data was filtered to show only results from that year. Based on the records obtained for that year, the occupancy rate for each property was calculated as the percentage of the total number of occupied nights in a year (_Occupancy_rate_2015_).
+
+```sql
 SELECT DISTINCT 
     st_property,
     COUNT(rental_date)
 FROM capstone.st_rental_dates
 GROUP BY st_property;
 
-#-- FILTER THE PREVIOUS RESULTS TO OBTAIN THE NUMBER OF DAYS EACH SHORT-TERM RENTAL PROPERTY WAS OCCUPIED ONLY DURING 2015
+-- FILTER THE PREVIOUS RESULTS TO OBTAIN THE NUMBER OF DAYS EACH SHORT-TERM RENTAL PROPERTY WAS OCCUPIED ONLY DURING 2015
 
 SELECT DISTINCT
     st_property,
@@ -91,7 +77,7 @@ FROM capstone.st_rental_dates
 WHERE YEAR(rental_date)=2015
 GROUP BY st_property;
 
-#-- CALCULATE THE OCCUPANCY RATE DURING 2015 FOR SHORT-TERM RENTAL PROPERTIES
+-- CALCULATE THE OCCUPANCY RATE DURING 2015 FOR SHORT-TERM RENTAL PROPERTIES
 
 SELECT DISTINCT
     st_property,
@@ -101,6 +87,8 @@ FROM capstone.st_rental_dates
 WHERE YEAR(rental_date)=2015
 GROUP BY st_property
 ORDER BY Occupancy_rate_2015 DESC;
+
+```
 
 #-- USE THE PREVIOUS QUERY AND JOIN WITH THE OTHER TABLES TO ADD INFORMATION ABOUT THOSE PROPERTIES
 #-- FIRST, ADD THE LOCATION INFO
