@@ -1,5 +1,5 @@
 title: Luis Mendoza-Moreno
 #logo: /assets/img/headshot_circle.png
 description: Welcome! This is my Data Analysis portfolio
-#show_downloads: true
+show_downloads: true
 theme: jekyll-theme-minimal
