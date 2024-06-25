@@ -40,7 +40,7 @@ The original spreadsheet file included records of monthly sales , but in an unus
 
 ## Education
 
-B.S. Biology | Universidad Nacional Autónoma de México (_July 2021_)
+* B.S. Biology | Universidad Nacional Autónoma de México (_July 2021_)
 
 ## Courses and Certificates
 
