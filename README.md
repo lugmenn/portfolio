@@ -14,7 +14,7 @@ Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R*
 
 Rough estimate in the changes of profits after converting certain long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location and their expected occupancy rates throughout the year.
 
-### 2. Improving the Bellabeat devices and their user engagement
+### 2. Improvement of Bellabeat devices and their user engagement
 
 [Data ETL report]
 
