@@ -4,7 +4,7 @@ For this project, I used MySQL to extract data from a database that included som
 
 Through SQL queries, the data was transformed in order to be merged into a single table and select the short\-term rentals with similar characteristics as the ones on the list of long\-term rentals from Watershed, having both the yearly profits and the estimate rates per night needed to complete the analysis and the profits' estimates needed to decide which properties would increase total profits if they were to be converted into shot term rentals. This analysis was completed on Excel \(you can [read more here](https://www.datascienceportfol.io/lugmenn/projects/0)\).
 
-![watershed schema](WSP_schema.png "Database Schema")
+![watershed schema](assets/p06- data cleansing excel/WSP_schema.png "Database Schema")
 
 These are some of the queries ran on MySQL to complete the data extraction and part of its transformation.
 
