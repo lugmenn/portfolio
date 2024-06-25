@@ -42,7 +42,6 @@ SELECT DISTINCT
 		COUNT(location_id) as Number_of_records
 FROM capstone.location
 GROUP BY state;
-
 ```
 
 ### DATA TRANSFORMATION AND JOINING TABLES
@@ -56,7 +55,6 @@ SELECT
     st_property	
 FROM capstone.st_rental_dates
 WHERE st_property LIKE '%ST100%';
-
 ```
 
 The output showed some records contained consecutive days, while some other didn't. This meant _rental_date_ referred to the specific day(s) a property was rented for a short-term stay, either a single night or more than one night, which would mean there would be multiple records of that property with consecutive dates.
@@ -89,7 +87,6 @@ FROM capstone.st_rental_dates
 WHERE YEAR(rental_date)=2015
 GROUP BY st_property
 ORDER BY Occupancy_rate_2015 DESC;
-
 ```
 
 Using the previous query to generate new data, additional information was added for each property.
@@ -98,7 +95,6 @@ Location data was added first.
 
 
 ```sql
-
 -- USING THE PREVIOUS QUERY AS A SUBQUERY TO ADD THE TRANSFORMED DATA INTO THE ORIGINAL TABLES
 SELECT DISTINCT
     p.st_property_id,
@@ -141,7 +137,6 @@ FROM
         GROUP BY rd.st_property
     ) AS occupancy_rate
     ON l.location_id=p.location AND p.st_property_id=occupancy_rate.st_property;
-
 ```
 
 Next step was to merge the generated data with the information about the properties and their rates per night. To make the code more readable in the next step, **a temporary table was created** (_st_properties_2015_).
@@ -182,12 +177,12 @@ FROM
         AND p.st_property_id=occupancy_rate.st_property
         AND rp.location=p.location AND rp.property_type=p.property_type
         AND p.property_type=pt.property_type_id;
-
 ```
+
 Followed by the joining of tables containing the summarized data for the short term properties with the table cointaining data for the Watershed long-term rental properties that will be analyzed. The **primary keys** used to merge both tables were based on the property type (which is defined by each property's characteristics) and the location (rental costs depend on those two factors, among others, so they had to match for a better comparison).
 
 ```sql
-#-- COMBINE THE UNIFIED SHORT-TERM PROPERTIES DATA WITH THE WATERSHED PROPERTIES (USING AN INNER JOIN)
+-- COMBINE THE UNIFIED SHORT-TERM PROPERTIES DATA WITH THE WATERSHED PROPERTIES (USING AN INNER JOIN)
 
 SELECT DISTINCT
     w.ws_property_id,
@@ -207,7 +202,6 @@ SELECT DISTINCT
 FROM watershed_property_info w JOIN st_properties_2015
         ON w.location=st_properties_2015.location 
         AND w.property_type=st_properties_2015.property_type;
-
 ```
 
 With this last step, the data was finally ready to be extracted and loaded into an analysis software. For this project, the data continued to be transformed and analyzed in Microsoft Excel and tableau Public.
