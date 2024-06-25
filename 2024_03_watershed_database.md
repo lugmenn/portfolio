@@ -6,19 +6,10 @@ Through SQL queries, the data was transformed in order to be merged into a singl
 
 These are some of the queries ran on MySQL to complete the data extraction and part of its transformation.
 
-
-
-```python
-# installing python and enabling sql queries on the jupyter ecosystem
-!pip install ipython-sql
-%load_ext sql
-```
-
+EXPLORING THE AVAILABLE DATA
+Reviewed each of the tables' fields contained in them
 
 ```python
-%sql
-#-- EXPLORING THE AVAILABLE DATA
-#-- Review each of the tables' fields contained in them
 
 SHOW columns FROM capstone.location;
 
@@ -31,9 +22,13 @@ SHOW columns FROM capstone.st_rental_dates;
 SHOW columns FROM capstone.st_rental_prices;
 
 SHOW columns FROM capstone.watershed_property_info;
+```
 
 
 #-- FURTHER EXPLORATION OF DATA CONTAINED IN EACH OF THE TABLES. CLEAN AND TRANSFORM IF NECESSARY
+
+
+```python
 SELECT * 
 FROM capstone.location
 LIMIT 50;
@@ -62,6 +57,8 @@ LIMIT 50;
 
 SELECT * 
 FROM capstone.watershed_property_info;
+
+```
 
 #-- FIRST, THE AVAILABLE SHORT-TERM RENTAL PROPERTIES (st_property) DATA WILL BE UNIFIED
 #-- FIND OUT EXACTLY WHAT rental_date REALLY MEANS
