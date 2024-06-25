@@ -146,7 +146,3 @@ The analysis on the records obtained from FitBit devices had the main purpose of
 3. **Creation of a reward system**: To increase the daily records on each device, a reward system implementation could be helpful in order to increase the user engagement. This system could be based on **reaching levels and gaining points for the number of hours registered each day**. Then, these points or levels could be used to access discounts for some of the available products or getting access to some benefits on Bellabeat's services.
 
 
-
-```
-
-```
