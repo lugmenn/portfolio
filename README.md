@@ -24,6 +24,8 @@ Rough estimate in the changes of profits after converting certain long-term rent
 
 Shared insights and recommended business actions based on the analysis of activity data recorded by 33 users of FitBit devices during two months as a way of finding growth opportunities in Bellabeat's products for health improvement and some possible roads to increase user engamement.
 
+![ss2](assets/09_bellabeatcover.png)
+
 ### 3. Finding the correlation between different North-American Metropolitan Areas' population and their Big Four teams' Win/Lose ratio
 
 [NFL teams Win/Lose ratio correlation analysis]()
