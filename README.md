@@ -42,6 +42,12 @@ Global sales report from cycling specialized business on Power Bi, including rev
 
 ### 6. Trends in the Melbourne Property Market
 
+[Property Market Report in Excel] ()
+
+alsemanche
+
+![ss6](assets/p05-property auctions/00-cover.png)
+
 ### 7. Transforming raw sales data
 
 [Data cleansing and transformation process in Excel](2024_01_excel_cleaningdata.md)
