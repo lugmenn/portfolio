@@ -26,17 +26,23 @@ Shared insights and recommended business actions based on the analysis of activi
 
 ![ss2](assets/09_bellabeatcover.png)
 
-### 3. Finding the correlation between different North-American Metropolitan Areas' population and their Big Four teams' Win/Lose ratio
+### 3. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' Win/Lose ratio
 
 [NFL teams Win/Lose ratio correlation analysis]()
 
-The Big Four refers to the major professional sports leagues across North America (USA and Canada). These leagues include NFL, NBA, MBL and NHL, which contain 30 to 32 teams each, and are mostly based on the top populated metropolitan areas in both countries. This analysis consisted of finding through the Pearson correlation how closely related is the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team to be more likely to win if the city it is based on is big, is the opposite to be expected or is there no relationship at all?
+This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team to be more likely to win if the city it is based on is big, is the opposite to be expected or is there no relationship at all?
 
-### 4. 
+The Big Four refers to the major professional sports leagues across North America (USA and Canada). These leagues include NFL, NBA, MBL and NHL, which contain 30 to 32 teams each, and are mostly based on the top populated metropolitan areas in both countries. 
 
-### 5. Dognition
+### 4. Quick insights for the Dognition development team
 
-### 6. Transforming raw sales data
+### 5. Global sales report for a cycling business
+
+Global sales report from cycling specialized business on Power Bi, including revenue from 2018-2021 period and sales by items category, location and month-to-month changes by fiscal year. 
+
+### 6. Trends in the Melbourne Property Market
+
+### 7. Transforming raw sales data
 
 [Data cleansing and transformation process in Excel](2024_01_excel_cleaningdata.md)
 
