@@ -42,7 +42,7 @@ Global sales report from cycling specialized business on Power Bi, including rev
 
 ### 6. Trends in the Melbourne Property Market
 
-[Property Market Report in Excel] ()
+[Property Market Report in Excel](2024_01-26_propertymarket_trends.md)
 
 alsemanche
 
