@@ -57,6 +57,3 @@ The pivot table show the top suburbs in a Council Region for a certain year, als
 * At the same time, the suburb in Melbourne with the lowest average cost for a property was Docklands, followed by Southbank and the Melbourne CBD, which let us see there is a wide range of prices in the porperty market.
 
 
-```
-
-```
