@@ -26,7 +26,7 @@ The final report consisted of a summary of data organized in a dashboard and piv
 
 The dashboard shows a summary for each council, as well as the trends for the average price during the year or each month. It also displays the clearance rates for the available properties and the change of the average house or unit price during 2018 in comparison to the 2017 average during the same selected month. Additionally, it displays the top suburb highest and lowest house prices in the selected Council Region. The dashboard was completed by adding tables and charts generated from pivot tables.
 
-![dashboard](assets/p05-property auctions/01-dashboard.png)
+[![dashboard](assets/p05-property auctions/01-dashboard.png)](https://github.com/lugmenn/portfolio/blob/main/assets/p05-property%20auctions/01-dashboard.png)
 
 #### Pivot Tables - Melbourne Trends
 
