@@ -18,7 +18,7 @@ Rough estimate in the changes of profits after converting certain long-term rent
 
 ### 2. Improvement of Bellabeat devices and their user engagement
 
-[Data transformation with **Python**]
+[Data transformation with **Python**](2024_05_bellabeat_cleaning.md)
 
 [Analysis completed with **Python**](2024_06_bellabeat_analysis.md)
 
