@@ -42,9 +42,9 @@ Global sales report from cycling specialized business on Power Bi, including rev
 
 ### 6. Trends in the Melbourne Property Market
 
-[Property Market Report in Excel](2024_01-26_propertymarket_trends.md)
+[Property Market Report in Excel](2024_01_propertymarket_trends.md)
 
-alsemanche
+The main objective was to deliver a report to showcase the trends and key metrics in the property market during 2017 and 2018 in some suburbs in the Melbourne Metropolitan Area, Australia. Overall, findings suggest there was an increase in the average house and apartment prices in most of the suburbs.
 
 ![ss6](assets/p05-property auctions/00-cover.png)
 
