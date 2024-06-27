@@ -64,11 +64,13 @@ The original spreadsheet file included records of monthly sales , but in an unus
 
 ## Courses and Certificates
 
-* [Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan (_June 2024_)
+* [Introduction to Data Science in Python](https://coursera.org/share/d8f3565476016680b49061be0075ad8e) | University of Michigan on Coursera (_June 2024_)
 
-* [Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University (_January 2024_)
+* [Google Cloud Computing Foundations Academy](https://drive.google.com/file/d/1V8Q_BpTLiBDFIUdiCRVJmqyXYk5S0d8O/view?usp=sharing) | [Google Cloud](https://www.cloudskillsboost.google/public_profiles/d33ecb6c-d70f-4541-8d58-e338ef8e0655) (_February 2024_)
 
-* [Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google (December 2023)
+* [Excel Skills for Data Analytics and Visualization](https://coursera.org/share/17f45e990b48d0b0a348ee784ee9415b) | Macquaire University on Coursera (_January 2024_)
+
+* [Google Data Analytics Certificate](https://coursera.org/share/e65da5f6042aa495d7ab29db87ade125) | Google on Coursera (December 2023)
 
 More coming soon.
 Thank you for browsing.
