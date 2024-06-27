@@ -42,22 +42,7 @@ daily_act2 = pd.read_csv('/content/Fitbit analysis/dailyActivity_merged.csv')
 dailyact = pd.concat([daily_act1, daily_act2], keys= [1, 2])
 dailyact.info()
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    /tmp/ipykernel_227/3611578210.py in <cell line: 4>()
-          2 
-          3 # importing records from 03/12/2016 - 04/11/2016
-    ----> 4 daily_act1 = pd.read_csv('/content/Fitbit analysis/dailyActivity_merged1.csv')
-          5 
-          6 # importing records from 04/12/2016 - 05/11/2016
-
-
-    NameError: name 'pd' is not defined
-
+![s1](assets/p02-pythoncleaning/02-dailyactinfo.png)
 
 ### Data Processing
 
@@ -71,6 +56,7 @@ print('Users in dailyact:', len(dailyact['Id'].unique()))
 print('Users in hourlysteps:', len(hourlysteps['Id'].unique()))
 print('Users in sleep:', len(sleep['Id'].unique()))
 ```
+![s2](assets/p02-pythoncleaning/03-filelen.png)
 
 Finding and eliminating duplicate rows in the dataset. Here, I show the code used in the _hourlysteps_ dataframe (a similar process was applied on the rest of the dataframes).
 
@@ -81,6 +67,7 @@ hourlysteps_duplicate = pd.DataFrame(hourlysteps.duplicated())
 hourlysteps_duplicate.iloc[:].value_counts()
 ```
 
+![s3](assets/p02-pythoncleaning/04-duplicate.png)
 
 ```python
 # duplicate rows were dropped from the dataframe
@@ -90,6 +77,7 @@ hourlysteps.drop_duplicates(inplace=True)
 hourlysteps.info()
 ```
 
+![s4](assets/p02-pythoncleaning/05-dropdupl.png)
 
 ```python
 # resetting the index on the dataframes and deleting any rows with missing values
@@ -97,6 +85,8 @@ hourlysteps = hourlysteps.droplevel(0)
 hourlysteps.dropna(inplace=True)
 hourlysteps.head()
 ```
+
+![s4](assets/p02-pythoncleaning/06-hourlyhead.png)
 
 ### Filtering the sample
 
@@ -110,6 +100,7 @@ records_by_user.reset_index(inplace=True)
 records_by_user.head()
 ```
 
+![s4](assets/p02-pythoncleaning/07-daysofuse.png)
 
 ```python
 # list with the users to keep
@@ -120,6 +111,8 @@ dailyact_filter = dailyact.loc[dailyact['Id'].isin(users_to_keep)]
 dailyact_filter.reset_index(inplace=True)
 print('There are', len(dailyact_filter['Id'].unique()), 'users in the "dailyact" dataframe')
 ```
+
+![s4](assets/p02-pythoncleaning/08-filter.png)
 
 #### Cleaning the column names
 
@@ -141,6 +134,7 @@ dailyact_filter['activitydate'] = pd.to_datetime(dailyact_filter.activitydate)
 print(dailyact_filter['activitydate'])
 ```
 
+![s4](assets/p02-pythoncleaning/09-date.png)
 
 ```python
 # then, the data was sorted by user and date of record
@@ -148,6 +142,8 @@ dailyact_clean = dailyact_filter.sort_values(by = ['id', 'activitydate'], ascend
 dailyact_clean.drop('index',inplace=True, axis=1)
 dailyact_clean.head()
 ```
+
+![s4](assets/p02-pythoncleaning/10-sorted.png)
 
 The date column in the _hourlysteps_ dataframe included both the date and the time of record. Since the analysis would require to group data by each hour, I decided to split it into two columns. The hour record was in a 12 hour format, which, for a better data understanding, I converted into a 24 hour format.
 
@@ -160,6 +156,8 @@ hourlysteps['activitydate'] = pd.to_datetime(hourlysteps['activitydate'], format
 hourlysteps = hourlysteps[['id', 'activitydate', 'activitytime', 'steptotal']]
 hourlysteps.head()
 ```
+
+![s4](assets/p02-pythoncleaning/11-hours.png)
 
 Finally, the _sleep_ dataframe also had the time in the date column. However it had "12:00:00 AM" in all records, so it was eliminated. Additionally, the unit used in the total sleep time and total time in bed was "minutes". To have a better understanding on the total time amount, they were converted into hours, renaming the column names in the process.
 
@@ -177,6 +175,8 @@ sleep['totaltimeinbed'] = sleep['totaltimeinbed']/60
 sleep.rename(columns={'totalminutesasleep':'hoursasleep', 'totaltimeinbed':'hoursinbed' }, inplace=True)
 sleep.head()
 ```
+
+![s4](assets/p02-pythoncleaning/12-sleep.png)
 
 #### Merging the dataframes
 
