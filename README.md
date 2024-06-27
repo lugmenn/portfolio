@@ -18,7 +18,7 @@ Rough estimate in the changes of profits after converting certain long-term rent
 
 ### 2. Improvement of Bellabeat devices and their user engagement
 
-[Data transformation with **Python** report]
+[Data transformation with **Python**]
 
 [Analysis completed with **Python**](2024_06_bellabeat_analysis.md)
 
@@ -36,7 +36,11 @@ The Big Four refers to the major professional sports leagues across North Americ
 
 ### 4. Quick insights for the Dognition development team
 
+[Using **SQL** to answer business questions]()
+
 ### 5. Global sales report for a cycling business
+
+[Sharing the report on **PowerBI**]()
 
 Global sales report from cycling specialized business on Power Bi, including revenue from 2018-2021 period and sales by items category, location and month-to-month changes by fiscal year. 
 
