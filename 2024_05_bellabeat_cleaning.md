@@ -192,14 +192,10 @@ act_sleep = pd.merge(dailyact_clean, sleep,
                      how='inner', on= ['id', 'activitydate'])
 ```
 
-This allowed to have, by the end of the process, four dataframes ready to be analyzed. Keep reading more [here](https://lugmenn.github.io/portfolio/2024_06_bellabeat_analysis.html)
+This allowed to have, by the end of the process, four dataframes ready to be analyzed. Keep reading more [here](https://lugmenn.github.io/portfolio/2024_06_bellabeat_analysis.html).
 
 1.   dailyact_clean
 2.   hourlysteps
 3.   act_sleep
 4.   sleep
 
-
-```python
-
-```
