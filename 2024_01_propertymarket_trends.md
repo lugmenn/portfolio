@@ -42,7 +42,7 @@ The pivot table show the top suburbs in a Council Region for a certain year, als
 
 ### Findings
 
-* The data showed an increase in the average price for both property types in all councils, except for Hume, Kingston, Moonee Valley and Moreland (4 out of 25).
+* The data showed, by the end of 2018, an increase in the average price for both property types in all councils, except for Hume, Kingston, Moonee Valley and Moreland (4 out of 25).
 
 * The Council Region with the highest average house price was Boroondara, with a value of $2, 296, 180 by the end of 2018.
 
