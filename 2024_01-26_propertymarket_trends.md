@@ -17,6 +17,8 @@ For a better analysis, the data cleaning and transformation involved the formatt
 
 Notes: _Sales method_ referred to the way the property was adquired by the client, either it being sold, sold prior or after an auction, passed in, no bid, withdrawn, or with a vendor bid. _Distance_ referred to the average distance from the Melbourne Central Business District (downtown) and _Property type_ referred to either a house or a unit (apartments)
 
+![data](assets/p05-property auctions/02-data.png)
+
 Once the data was clean and ready, it was organized into a table for an easier field grouping and an easier use of filters.
 The final report consisted of a summary of data organized in a dashboard and pivot tables.
 
@@ -24,13 +26,19 @@ The final report consisted of a summary of data organized in a dashboard and piv
 
 The dashboard shows a summary for each council, as well as the trends for the average price during the year or each month. It also displays the clearance rates for the available properties and the change of the average house or unit price during 2018 in comparison to the 2017 average during the same selected month. Additionally, it displays the top suburb highest and lowest house prices in the selected Council Region. The dashboard was completed by adding tables and charts generated from pivot tables.
 
+![dashboard](assets/p05-property auctions/01-dashboard.png)
+
 #### Pivot Tables - Melbourne Trends
 
 Since Melbourne is the most important economic center in the state of Victoria and its capital, it was of interest to look closely into the market trends in the region. For this, data from Melbourne was summarized in a pivot table showing the average prices for houses and units per month during 2017 and 2018.
 
+![pivot1](assets/p05-property auctions/03-melbtrends.png)
+
 #### Pivot Tables - Top Suburbs
 
 The pivot table show the top suburbs in a Council Region for a certain year, also displaying the most and least expensive property prices in each of them.
+
+![pivot2](assets/p05-property auctions/04-topsub.png)
 
 ### Findings
 
