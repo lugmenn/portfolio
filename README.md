@@ -34,7 +34,7 @@ Shared insights and recommended business actions based on the analysis of activi
 
 This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team's results based on its city population or not?
 
-![ss3](assets/03_correlationcover.png)
+![ss3](assets/03-correlationcover.png)
 
 ### 4. Quick insights for the Dognition development team
 
