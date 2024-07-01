@@ -26,9 +26,11 @@ Shared insights and recommended business actions based on the analysis of activi
 
 ![ss2](assets/09_bellabeatcover.png)
 
-### 3. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' Win/Lose ratio
+### 3. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' win/lost ratio
 
 [NFL teams Win/Lose ratio correlation analysis using **Python/Pandas**](2024_05_correlation.md)
+
+[Full Python code](2024_05_correlation_bigfour.md)
 
 This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team to be more likely to win if the city it is based on is big, is the opposite to be expected or is there no relationship at all?
 
