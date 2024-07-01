@@ -593,12 +593,8 @@ plt.savefig("bigfour_corr.png")
 
 
     
-![png](output_21_0.png)
+![png](assets/p03-correlations/01-regplots.png)
     
-
-
-
-    <Figure size 640x480 with 0 Axes>
 
 
 
