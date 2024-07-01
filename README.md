@@ -60,6 +60,8 @@ The main objective was to deliver a report to showcase the trends and key metric
 
 The original spreadsheet file included records of monthly sales , but in an unusable format for processing. Here, I discuss data transformation step by step with some Microsoft Excel functions to generate useful data, ready to be used for a future analysis.
 
+![ss7](assets/p06- data cleansing excel/09-cleaning cover.png)
+
 ## Education
 
  B.S. Biology | Faculty of Sciences - Universidad Nacional Autónoma de México (_July 2021_)
