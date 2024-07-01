@@ -32,9 +32,7 @@ Shared insights and recommended business actions based on the analysis of activi
 
 [Full Python code](2024_05_correlation_bigfour.md)
 
-This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team to be more likely to win if the city it is based on is big, is the opposite to be expected or is there no relationship at all?
-
-The Big Four refers to the major professional sports leagues across North America (USA and Canada). These leagues include NFL, NBA, MBL and NHL, which contain 30 to 32 teams each, and are mostly based on the top populated metropolitan areas in both countries. 
+This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team's results based on its city population or not?
 
 ### 4. Quick insights for the Dognition development team
 
