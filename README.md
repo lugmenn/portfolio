@@ -28,7 +28,7 @@ Shared insights and recommended business actions based on the analysis of activi
 
 ### 3. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' win/lost ratio
 
-[NFL teams Win/Lose ratio correlation analysis using **Python/Pandas**](2024_05_correlation.md)
+[NFL teams Win/Lose ratio correlation analysis using **Python/Pandas**](2024_05_02-NY_NFLcorrelation.md)
 
 [Full Python code](2024_05_correlation_bigfour.md)
 
