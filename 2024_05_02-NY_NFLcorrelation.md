@@ -493,7 +493,7 @@ plt.title('Scatterplot', fontweight='bold')
 
 
     
-![png](output_14_1.png)
+![png](assets/p03-correlations/02_scatterplot.png)
     
 
 
@@ -516,11 +516,13 @@ plt.show()
 
 
     
-![png](output_15_0.png)
+![png](assets/p03-correlations/03-regression.png)
     
 
 
 The same conclusion applied when analyzing the rest of the leagues.
+
+![png](assets/p03-correlations/01-regplots.png)
 
 ### New York City NFL Victory Rates History
 
@@ -1169,7 +1171,7 @@ ax.text(0.08, 0.15, 'Win % = Won games / Total games played', transform=ax.trans
 
 
     
-![png](output_28_0.png)
+![png](assets/p03-correlations/04_ny_nflvictory.png)
     
 
 
