@@ -9,7 +9,25 @@ The general content of the database can be read thoroughly [here](assets/p04-dat
 ![schema](assets/p04-dataextraction/DognitionDB_schema.png)
 
 It contained information about the registered users, their registered dogs, their exam answers and completed tests logs, as well as customer reviews about the testing program and activity throughout the website. Sensitive personal data from the users (such as names, e-mails, phone numbers and full address) was not included in the dataset for analysis.
-   
+
+## Findings
+
+The Dognition Team wanted to now if the number of completed tests were dependent on some dog characteristics. The main findings were:
+
+* The dog personalities' groups didn´t show a difference in the completed tests totals.
+  
+* The same observation is applicable when evaluating the dog's breed purity.
+
+* It´s not possible to assume with certainty whether the dog's breed group has a direct influence or not.
+
+* However, it was found the Herding and Sporting groups had the highest number of completed tests.
+
+* Dognition could decide to explore more deeply these groups and develop marketing strategies for owners of these dog breed types, as well as create special content for them.
+
+* The neutered dogs showed to have 1 to 2 more completed tests than those who weren't. The analysis should be extended to find if the difference persists when other variables are paired.
+  
+## Method
+
 The following queries intended to address the issues related to "Features of Dogs" that could potentially influence the number of tests the dogs were likely to complete.
 
 First, the SQL module and the database were imported into the workspace.
