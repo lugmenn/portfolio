@@ -250,27 +250,25 @@ GROUP BY personality;
 
 
 
-You should retrieve an output of 11 rows with one of the dimensions labeled "None" and another labeled "" (nothing is between the quotation marks).
+The output returned 11 rows of dimension categories, which include a null-value category (labeled as _None_) and an empty category (non-null or "").
 
-**Question 5: How many unique DogIDs are summarized in the Dognition dimensions labeled "None" or ""? (You should retrieve values of 13,705 and 71)**
+To check out how many unique DogIDs are included in each of those categories empty, the following query was used:
 
 
-```python
-%%sql
+```sql
 SELECT
-    TestsPerDog.dimension AS personality, COUNT(TestsPerDog.dogID) AS NumDogs
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, d.dimension AS dimension, COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE
-            dimension IS NULL OR dimension=""
-        GROUP BY 
-            dogID
+    TestsPerDog.dimension AS personality, 
+    COUNT(TestsPerDog.dogID) AS NumDogs
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID, 
+        d.dimension AS dimension, 
+        COUNT(c.created_at) AS tests_completed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE dimension IS NULL OR dimension=""
+      GROUP BY dogID
      ) AS TestsPerDog
-GROUP BY personality
+GROUP BY personality;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -296,27 +294,25 @@ GROUP BY personality
 </table>
 
 
+The Dognition testing platform assigns each dog a personality dimension after the initial Assessment for completing the first 20 tests. This means the dogs with the null-value as dimension are those that did not complete the required number of tests fo getting a label.
 
-It makes sense there would be many dogs with NULL values in the dimension column, because we learned from Dognition that personality dimensions can only be assigned after the initial "Dognition Assessment" is completed, which is comprised of the first 20 Dognition tests.  If dogs did not complete the first 20 tests, they would retain a NULL value in the dimension column.
+However, the dogs with the empty dimension values could indicate there were some odd conditions as to why they weren't assigned a label. For this reason, it was appropiate to find out if there were some common characteristics among those dogs.
 
-The non-NULL empty string values are more curious.  It is not clear where those values would come from.  
-
-**Question 6: To determine whether there are any features that are common to all dogs that have non-NULL empty strings in the dimension column, write a query that outputs the breed, weight, value in the "exclude" column, first or minimum time stamp in the complete_tests table, last or maximum time stamp in the complete_tests table, and total number of tests completed by each unique DogID that has a non-NULL empty string in the dimension column.**
-
-
-
-```python
-%%sql
-SELECT 
-    DISTINCT d.dog_guid AS dogID, d.breed, d.weight, d.dimension, d.exclude,
-        MIN(c.created_at) AS first_test, MAX(c.created_at) AS last_test, COUNT(c.created_at) AS completed_tests
-FROM
-    dogs d JOIN complete_tests c
-    ON
-    d.dog_guid=c.dog_guid
+```sql
+SELECT DISTINCT 
+    d.dog_guid AS dogID,
+    d.breed, 
+    d.weight, 
+    d.dimension, 
+    d.exclude,
+    MIN(c.created_at) AS first_test, 
+    MAX(c.created_at) AS last_test, 
+    COUNT(c.created_at) AS completed_tests
+FROM dogs d JOIN complete_tests c
+    ON d.dog_guid=c.dog_guid
 WHERE d.dimension=""
 GROUP BY dogID
-LIMIT 10
+LIMIT 10;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
