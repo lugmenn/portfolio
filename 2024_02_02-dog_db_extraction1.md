@@ -439,13 +439,14 @@ LIMIT 10;
 
 Note: _The query without the LIMIT clause brought back 71 dog IDs with empty NON-null-values in the Dimension column._
 
-A quick inspection of the output from the last query illustrates that almost all of the entries that have non-NULL empty strings in the dimension column also have "exclude" flags of 1, meaning that the entries are meant to be excluded due to factors monitored by the Dognition team.  This provides a good argument for excluding the entire category of entries that have non-NULL empty strings in the dimension column from our analyses.
+A quick inspection of the output showed most of the dogs with an empty dimension value ("") had a exclude flag (value "1") in the exclude column. The DogIDs flagged with a 1 in that column were not meant to be included in the monitoring by the Dognition team, since they could have been flagged for many reasons, including them being fake data for platform testing.
 
-**Question 7: Rewrite the query in Question 4 to exclude DogIDs with (1) non-NULL empty strings in the dimension column, (2) NULL values in the dimension column, and (3) values of "1" in the exclude column.  NOTES AND HINTS: You cannot use a clause that says d.exclude does not equal 1 to remove rows that have exclude flags, because Dognition clarified that both NULL values and 0 values in the "exclude" column are valid data.  A clause that says you should only include values that are not equal to 1 would remove the rows that have NULL values in the exclude column, because NULL values are never included in equals statements (as we learned in the join lessons).  In addition, although it should not matter for this query, practice including parentheses with your OR and AND statements that accurately reflect the logic you intend.  Your results should return 402 DogIDs in the ace dimension and 626 dogs in the charmer dimension.**
+Because of this, those entries (subjects with non-NULL empty strings in the dimension column and _1_ in the exclude column) were excluded from the analysis.
+
+NOTE: _the 'exclude' column could have had a value or 1, 0 or a null-value. The Dognition team recognized a NULL-value as a valid one, so the query WHERE exclude!=1 wouldn't have been appropiate because then, the output would have excluded those null values._
 
 
-```python
-%%sql
+```sql
 SELECT
     TestsPerDog.dimension AS personality,
     AVG(TestsPerDog.tests_completed) AS AvgCompleteTests,
@@ -464,7 +465,7 @@ FROM (SELECT
         GROUP BY 
             dogID
      ) AS TestsPerDog
-GROUP BY personality
+GROUP BY personality;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -529,7 +530,9 @@ GROUP BY personality
 
 
 
-The results of Question 7 suggest there are not appreciable differences in the number of tests completed by dogs with different Dognition personality dimensions.  Although these analyses are not definitive on their own, these results suggest focusing on Dognition personality dimensions will not likely lead to significant insights about how to improve Dognition completion rates.
+At first glance, the results didn't suggest there was a great influence of the dogs' personalities over the number of tests dogs had completed.
+
+For more accuracy, a statistical analysis over these results could be executed to prove if there is statistical significance between the different groups. For now, it could be a better idea for the Dognition team to put their effort into analyzing different aspects to improve Dognition completion and usage rates.
 
 
 
