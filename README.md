@@ -30,7 +30,7 @@ Shared insights and recommended business actions based on the analysis of activi
 
 [NFL teams Win/Lose ratio correlation analysis using **Python/Pandas**](2024_05_02-NY_NFLcorrelation.md)
 
-[Full Python code](2024_05_02-correlation_bigfour.md)
+[Full Python code](2024_05_01-correlation_bigfour.md)
 
 This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team's results based on its city population or not?
 
