@@ -1,17 +1,15 @@
-Copyright Jana Schaich Borg/Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
 
-# MySQL Exercise 11: Queries that Test Relationships Between Test Completion and Dog Characteristics
+# Queries that Test Relationships Between Test Completion and Features of Dogs.
 
-This lesson we are going to integrate all the SQL syntax we've learned so far to start addressing questions in our Dognition Analysis Plan.  I summarized the reasons having an analysis plan is so important in the "Start with an Analysis Plan" video accompanying this week's materials.  Analysis plans ensure that you will address questions that are relevant to your business objectives as quickly and efficiently as possible.  The quickest way to narrow in the factors in your analysis plan that are likely to create new insights is to combine simple SQL calculations with visualization programs, like Tableau, to identify which factors under consideration have the strongest effects on the business metric you are tasked with improving.  You can then design more nuanced statistical models in other software, such as R, based on the factors you have confirmed are likely to be important for understanding and changing your business metric. 
+[Original **SQL code** can be accessed here](https://github.com/lugmenn/Insights-for-Dognition/blob/main/02_Dogs_v_CompletedTests.sql)
 
-<img src="https://duke.box.com/shared/static/davndrvd4jb1awwuq6sd1rgt0ck4o8nm.jpg" width=400 alt="SELECT FROM WHERE ORDER BY" />
+A database provided by Dognition was examined with the use of MySQL to generate insights to find out how could the company retain their users and increase the number of customers using the platform. 
 
-I describe a method for designing analysis plans in the Data Visualization and Communication with Tableau course earlier in this Specialization.  I call that method Structured Pyramid Analysis Plans, or "sPAPs".  I have provided a skeleton of an sPAP for the Dognition data set with the materials for this course that I will use as a road map for the queries we will design and practice in the next two lessons.  To orient you, the SMART goal of the analysis project is at the top of the pyramid.  This is a specific, measurable, attainable, relevant, and time-bound version of the general project objective, which is to make a recommendation to Dognition about what they could do to increase the number of tests customers complete. The variables you will use to assess the goal should be filled out right under where the SMART goal is written.  Then under those variables, you will see ever-widening layers of categories and sub-categories of issues that will be important to analyze in order to achieve your SMART goal.  
+It contained information about the registered users, their registered dogs, their exam answers and completed tests logs, as well as customer reviews about the testing program and activity throughout the website. Sensitive personal data from the users (such as names, e-mails, phone numbers and full address) was not included in the dataset for analysis.
    
-In this lesson, we will write queries to address the issues in the left-most branch of the sPAP.  These issues all relate to "Features of Dogs" that could potentially influence the number of tests the dogs will ultimately complete.  We will spend a lot of time discussing and practicing how to translate analysis questions described in words into queries written in SQL syntax.
+The following queries intended to address the issues related to "Features of Dogs" that could potentially influence the number of tests the dogs were likely to complete.
 
-To begin, load the sql library and database, and make the Dognition database your default database:
-
+First, the SQL module and the database were imported into the workspace.
 
 ```python
 %load_ext sql
@@ -21,24 +19,16 @@ To begin, load the sql library and database, and make the Dognition database you
 
      * mysql://studentuser:***@localhost/dognitiondb
     0 rows affected.
-
-
-
-
-
     []
 
-## 1. Assess whether Dognition personality dimensions are related to the number of tests completed 
 
-The first variable in the Dognition sPAP we want to investigate is Dognition personality dimensions.  Recall from the "Meet Your Dognition Data" video and the written description of the Dognition Data Set included with the Week 2 materials that Dognition personality dimensions represent distinct combinations of characteristics assessed by the Dognition tests.  It is certainly plausible that certain personalities of dogs might be more or less likely to complete tests.  For example, "einstein" dogs might be particularly likely to complete a lot of tests.  
+## Personality influence in the number of tests completed 
 
-To test the relationship between Dognition personality dimensions and test completion totals, we need a query that will output a summary of the number of tests completed by dogs that have each of the Dognition personality dimensions.  The features you will need to include in your query are foreshadowed by key words in this sentence.  First, the fact that you need a summary of the number of tests completed suggests you will need an aggregation function.  Next, the fact that you want a different summary for each personality dimension suggests that you will need a GROUP BY clause.  Third, the fact that you need a "summary of the number of tests completed" rather than just a "summary of the tests completed" suggests that you might have to have multiple stages of aggegrations, which in turn might mean that you will need to use a subquery.
+The Dognition personality dimensions represent distinct combinations of characteristics assessed by the Dognition tests.  It is certainly possible that certain personalities of dogs might be more or less likely to complete tests.  
 
-Let's build the query step by step.
+To test the relationship between Dognition personality dimensions and test completion totals, it was necessary a query that would output a summary of the number of tests completed by dogs that have each of the Dognition personality dimensions.
 
-**Question 1: To get a feeling for what kind of values exist in the Dognition personality dimension column, write a query that will output all of the distinct values in the dimension column.  Use your relational schema or the course materials to determine what table the dimension column is in.  Your output should have 11 rows.**
-
-
+First, I explored the different categories dogs can be classified into by their personality (dimension).
 
 ```sql
 SELECT DISTINCT dimension
