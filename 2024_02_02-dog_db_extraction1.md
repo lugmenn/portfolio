@@ -25,7 +25,7 @@ First, the SQL module and the database were imported into the workspace.
     []
 
 
-## Personality influence in the number of tests completed 
+## Personality influence over the number of tests completed 
 
 The Dognition personality dimensions represent distinct combinations of characteristics assessed by the Dognition tests.  It is certainly possible that certain personalities of dogs might be more or less likely to complete tests.  
 
@@ -532,23 +532,19 @@ GROUP BY personality;
 
 At first glance, the results didn't suggest there was a great influence of the dogs' personalities over the number of tests dogs had completed.
 
-For more accuracy, a statistical analysis over these results could be executed to prove if there is statistical significance between the different groups. For now, it could be a better idea for the Dognition team to put their effort into analyzing different aspects to improve Dognition completion and usage rates.
+For more accuracy, a statistical testing over these results could be executed to prove if there is a significant difference between the different groups. For now, it could be a better idea for the Dognition team to put their effort into analyzing different aspects to improve Dognition completion and usage rates.
 
 
 
-## 2. Assess whether dog breeds are related to the number of tests completed
+##  Dog breeds influence over the total of tests completed
 
-The next variable in the Dognition sPAP we want to investigate is Dog Breed.  We will run one analysis with Breed Group and one analysis with Breed Type.
+To evaluate the impact a dog's breed had on the number of completed tests, I ran one analysis assessing the Breed Group and one more with Breed Type.
 
-First, determine how many distinct breed groups there are.
+Similarly to the evaluation of the personality types, first, I wanted to find out how many breed groups were registered in the database.
 
-**Questions 8: Write a query that will output all of the distinct values in the breed_group field.**
-
-
-```python
-%%sql
+```sql
 SELECT DISTINCT breed_group
-FROM dogs
+FROM dogs;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -593,23 +589,21 @@ FROM dogs
 
 
 
-You can see that there are NULL values in the breed_group field.  Let's examine the properties of these entries with NULL values to determine whether they should be excluded from our analysis.
+The query's output showed there were null values among the breed group field, a variable that was explored to find out those dogs characteristics.
 
-**Question 9: Write a query that outputs the breed, weight, value in the "exclude" column, first or minimum time stamp in the complete_tests table, last or maximum time stamp in the complete_tests table, and total number of tests completed by each unique DogID that has a NULL value in the breed_group column.**
-
-
-```python
-%%sql
-SELECT 
-    DISTINCT d.dog_guid AS dogID, d.breed, d.weight, d.exclude,
-        MIN(c.created_at) AS first_test, MAX(c.created_at) AS last_test, COUNT(c.created_at) AS completed_tests
-FROM
-    dogs d JOIN complete_tests c
-    ON
-    d.dog_guid=c.dog_guid
+```sql
+SELECT DISTINCT 
+     d.dog_guid AS dogID, 
+     d.breed, 
+     d.weight,
+     d.exclude,
+     MIN(c.created_at) AS first_test, 
+     MAX(c.created_at) AS last_test, 
+     COUNT(c.created_at) AS completed_tests
+FROM dogs d JOIN complete_tests c
+    ON d.dog_guid=c.dog_guid
 WHERE d.breed_group IS NULL
-GROUP BY dogID
-LIMIT 10
+GROUP BY dogID;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -725,34 +719,27 @@ LIMIT 10
 
 Note: _The query without the LIMIT clause brought back 8816 dog IDs with missing data on the the breed_group column._
 
-There are a lot of these entries and there is no obvious feature that is common to all of them, so at present, we do not have a good reason to exclude them from our analysis.  Therefore, let's move on to question 10 now....
+There was no pattern to be found on the first evaluation of the output. This means there was no good reason for this specific trait to be excluded from the analysis.
 
-**Question 10: Adapt the query in Question 7 to examine the relationship between breed_group and number of tests completed.  Exclude DogIDs with values of "1" in the exclude column. Your results should return 1774 DogIDs in the Herding breed group.**
+The next step was to find the relationship between breed group and the number of tests completed.
 
-
-
-```python
-%%sql
+```sql
 SELECT
     TestsPerDog.breed_group AS breed_group,
     COUNT(TestsPerDog.dogID) AS NumberOfDogs,
     SUM(TestsPerDog.tests_completed) AS TotalTests,
     AVG(TestsPerDog.tests_completed) AS AvgCompleteTests
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, 
-            d.breed_group AS breed_group, 
-            COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE  
-            d.exclude IS NULL OR d.exclude=0
-        GROUP BY 
-            dogID
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID, 
+        d.breed_group AS breed_group, 
+        COUNT(c.created_at) AS tests_completed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE d.exclude IS NULL OR d.exclude=0
+      GROUP BY dogID
      ) AS TestsPerDog
 GROUP BY breed_group
-ORDER BY AvgCompleteTests DESC
+ORDER BY AvgCompleteTests DESC;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -826,35 +813,32 @@ ORDER BY AvgCompleteTests DESC
 </table>
 
 
+As it is visible on the generated table, Herding and Sporting groups turned out to have the highest number of completed tests.
 
-The results show there are non-NULL entries of empty strings in breed_group column again.  Ignoring them for now, Herding and Sporting breed_groups complete the most tests, while Toy breed groups complete the least tests.  This suggests that one avenue an analyst might want to explore further is whether it is worth it to target marketing or certain types of Dognition tests to dog owners with dogs in the Herding and Sporting breed_groups.  Later in this lesson we will discuss whether using a median instead of an average to summarize the number of completed tests might affect this potential course of action. 
+A suggestion for the Dognition team would be to deepen the analysis further specificaly into these breeds for creating marketing strategies or create specific content for them, as well as study who the owners of those dogs are.
 
-**Question 11: Adapt the query in Question 10 to only report results for Sporting, Hound, Herding, and Working breed_groups using an IN clause.**
+To showcase the top 4 breed groups with the most number of completed tests for a report the previous query was adapted:
 
 
-```python
-%%sql
+```sql
 SELECT
     TestsPerDog.breed_group AS breed_group,
     COUNT(TestsPerDog.dogID) AS NumberOfDogs,
     SUM(TestsPerDog.tests_completed) AS TotalTests,
     AVG(TestsPerDog.tests_completed) AS AvgCompleteTests
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, 
-            d.breed_group AS breed_group, 
-            COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE  
-            (d.exclude IS NULL OR d.exclude=0) AND
-            d.breed_group IN ("Sporting","Hound","Herding","Working")
-        GROUP BY 
-            dogID
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID, 
+        d.breed_group AS breed_group, 
+        COUNT(c.created_at) AS tests_completed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE (d.exclude IS NULL OR d.exclude=0)
+         AND
+        d.breed_group IN ("Sporting","Hound","Herding","Working")
+      GROUP BY dogID
      ) AS TestsPerDog
 GROUP BY breed_group
-ORDER BY AvgCompleteTests DESC
+ORDER BY AvgCompleteTests DESC;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -899,15 +883,12 @@ ORDER BY AvgCompleteTests DESC
 
 
 
-Next, let's examine the relationship between breed_type and number of completed tests.  
-
-**Questions 12: Begin by writing a query that will output all of the distinct values in the breed_type field.**
+Next, the breed types (breed purity) were examined.  
 
 
-```python
-%%sql
+```sql
 SELECT DISTINCT breed_type
-FROM dogs
+FROM dogs;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -936,32 +917,26 @@ FROM dogs
 </table>
 
 
+-- And in a similar approach, I tried to find the relationship between the breed type and the number of tests completed.
 
-**Question 13: Adapt the query in Question 7 to examine the relationship between breed_type and number of tests completed. Exclude DogIDs with values of "1" in the exclude column. Your results should return 8865 DogIDs in the Pure Breed group.**
 
-
-```python
-%%sql
+```sql
 SELECT
     TestsPerDog.breed_type AS breed_type,
     COUNT(TestsPerDog.dogID) AS NumberOfDogs,
     SUM(TestsPerDog.tests_completed) AS TotalTests,
     AVG(TestsPerDog.tests_completed) AS AvgCompleteTests
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, 
-            d.breed_type AS breed_type, 
-            COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE  
-            d.exclude IS NULL OR d.exclude=0
-        GROUP BY 
-            dogID
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID,
+        d.breed_type AS breed_type,
+        COUNT(c.created_at) AS tests_completed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE d.exclude IS NULL OR d.exclude=0
+      GROUP BY dogID
      ) AS TestsPerDog
 GROUP BY breed_type
-ORDER BY AvgCompleteTests DESC
+ORDER BY AvgCompleteTests DESC;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -1006,7 +981,7 @@ ORDER BY AvgCompleteTests DESC
 
 
 
-There does not appear to be an appreciable difference between number of tests completed by dogs of different breed types.
+The output didn't show an appreciable difference between number of tests completed by dogs of different breed types, however, statistical testing is required to have certainty.
     
   
 ## 3. Assess whether dog breeds and neutering are related to the number of tests completed
