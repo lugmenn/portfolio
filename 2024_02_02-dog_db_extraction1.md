@@ -4,9 +4,9 @@
 [Original **SQL script** can be accessed here](https://github.com/lugmenn/Insights-for-Dognition/blob/main/02_Dogs_v_CompletedTests.sql)
 
 A database provided by Dognition was examined with the use of **MySQL** to generate insights to find out how could the company retain their users and increase the number of customers using the platform.
-The gneral content of the database can be read thoroughly [here](https://github.com/lugmenn/Insights-for-Dognition/blob/main/DogtinionDB_schema.png)
+The gneral content of the database can be read thoroughly [here](assets/p04-dataextraction/00_Dognition-Data-Set-Description.pdf)
 
-![schema](DogtinionDB_schema.png)
+![schema](assets/p04-dataextraction/DognitionDB_schema.png)
 
 It contained information about the registered users, their registered dogs, their exam answers and completed tests logs, as well as customer reviews about the testing program and activity throughout the website. Sensitive personal data from the users (such as names, e-mails, phone numbers and full address) was not included in the dataset for analysis.
    
