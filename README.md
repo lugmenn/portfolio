@@ -38,7 +38,7 @@ This analysis consisted of finding through the Pearson correlation how closely r
 
 ### 4. Quick insights for the Dognition development team
 
-[Using **SQL** to answer business questions](MySQL_Exercise_11_Queries_that_Test_Relationships_Between_Test_Completion_and_Dog_Characteristics.md)
+[Using **SQL** to answer business questions](2024_02_02-dog_db_extraction1.md)
 
 ### 5. Global sales report for a cycling business
 
