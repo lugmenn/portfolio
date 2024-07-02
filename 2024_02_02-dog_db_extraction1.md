@@ -28,10 +28,6 @@ To begin, load the sql library and database, and make the Dognition database you
 
     []
 
-
-
-<img src="https://duke.box.com/shared/static/p2eucjdttai08eeo7davbpfgqi3zrew0.jpg" width=600 alt="SELECT FROM WHERE" />
-
 ## 1. Assess whether Dognition personality dimensions are related to the number of tests completed 
 
 The first variable in the Dognition sPAP we want to investigate is Dognition personality dimensions.  Recall from the "Meet Your Dognition Data" video and the written description of the Dognition Data Set included with the Week 2 materials that Dognition personality dimensions represent distinct combinations of characteristics assessed by the Dognition tests.  It is certainly plausible that certain personalities of dogs might be more or less likely to complete tests.  For example, "einstein" dogs might be particularly likely to complete a lot of tests.  
@@ -44,8 +40,7 @@ Let's build the query step by step.
 
 
 
-```python
-%%sql
+```sql
 SELECT DISTINCT dimension
 FROM dogs
 ```
