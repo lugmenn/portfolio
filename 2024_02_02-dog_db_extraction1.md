@@ -4,7 +4,7 @@
 [Original **SQL script** can be accessed here](https://github.com/lugmenn/Insights-for-Dognition/blob/main/02_Dogs_v_CompletedTests.sql)
 
 A database provided by Dognition was examined with the use of **MySQL** to generate insights to find out how could the company retain their users and increase the number of customers using the platform.
-The gneral content of the database can be read thoroughly [here](assets/p04-dataextraction/00_Dognition-Data-Set-Description.pdf)
+The general content of the database can be read thoroughly [here](assets/p04-dataextraction/00_Dognition-Data-Set-Description.pdf).
 
 ![schema](assets/p04-dataextraction/DognitionDB_schema.png)
 
