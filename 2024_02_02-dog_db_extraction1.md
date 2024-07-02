@@ -34,8 +34,9 @@ To test the relationship between Dognition personality dimensions and test compl
 First, I explored the different categories dogs can be classified into by their personality (dimension).
 
 ```sql
+%%sql
 SELECT DISTINCT dimension
-FROM dogs
+FROM dogs;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -86,24 +87,20 @@ FROM dogs
 
 
 
-The results of the query above illustrate there are NULL values (indicated by the output value "none") in the dimension column.  Keep that in mind in case it is relevant to future queries.  
+Given that the query's output showed there are null values, further exploration into those cases was required.
 
-We want a summary of the total number of tests completed by dogs with each personality dimension.  In order to calculate those summaries, we first need to calculate the total number of tests completed by each dog.  We can achieve this using a subquery.  The subquery will require data from both the dogs and the complete_tests table, so the subquery will need to include a join.  We are only interested in dogs who have completed tests, so an inner join is appropriate in this case.
-
-**Question 2: Use the equijoin syntax (described in MySQL Exercise 8) to write a query that will output the Dognition personality dimension and total number of tests completed by each unique DogID.  This query will be used as an inner subquery in the next question.  LIMIT your output to 100 rows for troubleshooting purposes.**
+Next, a summary for the number of tests completed by each unique dog, alogside its personality, was created.
 
 
-```python
-%%sql
-SELECT 
-    DISTINCT d.dog_guid AS dogID, d.dimension AS dimension, COUNT(c.created_at) AS tests_completed
-FROM
-    dogs d, complete_tests c
-WHERE
-    d.dog_guid=c.dog_guid
-GROUP BY 
-    dogID
-LIMIT 10
+```sql
+SELECT DISTINCT
+      d.dog_guid AS dogID,
+      d.dimension AS dimension,
+      COUNT(c.created_at) AS tests_completed
+FROM dogs d JOIN complete_tests c
+    ON d.dog_guid=c.dog_guid
+GROUP BY dogID
+LIMIT 10;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -172,110 +169,25 @@ LIMIT 10
 </table>
 
 
+After obtaining the number of tests completed by each individual dog, then the data was aggregated to know how many tests were completed by dogs in a certain dimension or personality group.
 
-**Question 3: Re-write the query in Question 2 using traditional join syntax (described in MySQL Exercise 8).**
-
-
-```python
-%%sql
-SELECT 
-    DISTINCT d.dog_guid AS dogID, d.dimension AS dimension, COUNT(c.created_at) AS tests_completed
-FROM
-    dogs d JOIN complete_tests c
-    ON
-    d.dog_guid=c.dog_guid
-GROUP BY 
-    dogID
-LIMIT 10
-```
-
-     * mysql://studentuser:***@localhost/dognitiondb
-    10 rows affected.
+The previous query was used as a subquery to create a temporary table with the relevant data.
 
 
 
-
-
-<table>
-    <tr>
-        <th>dogID</th>
-        <th>dimension</th>
-        <th>tests_completed</th>
-    </tr>
-    <tr>
-        <td>fd27b272-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>charmer</td>
-        <td>21</td>
-    </tr>
-    <tr>
-        <td>fd27b5ba-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>protodog</td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td>fd27b6b4-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>None</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td>fd27b79a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>None</td>
-        <td>11</td>
-    </tr>
-    <tr>
-        <td>fd27b86c-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>einstein</td>
-        <td>31</td>
-    </tr>
-    <tr>
-        <td>fd27b948-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>stargazer</td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td>fd27ba1a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>maverick</td>
-        <td>27</td>
-    </tr>
-    <tr>
-        <td>fd27bbbe-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>protodog</td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td>fd27c1c2-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>einstein</td>
-        <td>20</td>
-    </tr>
-    <tr>
-        <td>fd27c5be-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>socialite</td>
-        <td>20</td>
-    </tr>
-</table>
-
-
-
-Now we need to summarize the total number of tests completed by each unique DogID within each Dognition personality dimension.  To do this we will need to choose an appropriate aggregation function for the count column of the query we just wrote.  
-
-**Question 4: To start, write a query that will output the average number of tests completed by unique dogs in each Dognition personality dimension.  Choose either the query in Question 2 or 3 to serve as an inner query in your main query.  If you have trouble, make sure you use the appropriate aliases in your GROUP BY and SELECT statements.**
-
-
-
-```python
-%%sql
+```sql
 SELECT
-    TestsPerDog.dimension AS personality, AVG(TestsPerDog.tests_completed) AS AvgCompleteTests
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, d.dimension AS dimension, COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        GROUP BY 
-            dogID
+   TestsPerDog.dimension AS personality, 
+   AVG(TestsPerDog.tests_completed) AS AvgCompleteTests
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID, 
+        d.dimension AS dimension, 
+        COUNT(c.created_at) AS tests_completed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      GROUP BY dogID
      ) AS TestsPerDog
-GROUP BY personality
+GROUP BY personality;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -1791,11 +1703,6 @@ GROUP BY
 This time many of the standard deviations have larger magnitudes than the average duration values.  This suggests  there are outliers in the data that are significantly impacting the reported average values, so the average values are not likely trustworthy. These data should be exported to another program for more sophisticated statistical analysis.
 
 **In the next lesson, we will write queries that assess the relationship between testing circumstances and the number of tests completed.  Until then, feel free to practice any additional queries you would like to below!**
-
-
-```python
-
-```
 
 
 ```python
