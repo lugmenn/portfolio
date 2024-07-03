@@ -42,7 +42,7 @@ This analysis consisted of finding through the Pearson correlation how closely r
 
 [Communicating findings with **Tableau**](2024_02_03-dog_db_analysis.md)
 
-Data from a Dognition Database was analyzed to find if there are certain user characteristics that influence the platform usage with the objective of development of marketing strategies.
+Dognition, a business focused on studying skills on dogs, wanted to increase the number of tests completed by its users. For this, a database was analyzed to find if there are certain users' and dogs' characteristics that influence the platform usage in order to develop succesful marketing strategies and content creation.
 
 ![ss4](assets/p04-dataextraction/03-dognitioncover.png)
 
