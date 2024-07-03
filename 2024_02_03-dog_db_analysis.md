@@ -13,6 +13,7 @@ Second, data extraction was focused on understand the users that used the platfo
 
 ## Findings in the Dogs' Data
 
+[![dogs dashboard](assets/p04-dataextraction/01-dogentries.png "Dogs Data")](https://public.tableau.com/app/profile/luis.mendoza6002/viz/DognitionDogData/FirstEvaluationontheDognitionUsersActivity?publish=yes)
 
 * The dog personalities’ groups didn´t show a difference in the completed tests totals.
 
@@ -28,6 +29,8 @@ Second, data extraction was focused on understand the users that used the platfo
 
 ## Findings in the Users' Data
 
+[![users dashboard](assets/p04-dataextraction/02-usersinfo.png "Users Data")](https://public.tableau.com/app/profile/luis.mendoza6002/viz/Dognitionexercise_17090872071340/EvaluationontheDognitionUsersActivity)
+
 * Most of the users are active during the weekend, specially on Sundays.
 
 * Most of the users are located in English speaking countries : USA, Canada, Australia, and the UK. A **site translation to other languages** could attract new potential customers overseas.
@@ -37,6 +40,4 @@ Second, data extraction was focused on understand the users that used the platfo
 * The Americans use the platform mostly during the afternoon and Sundays. These might be good time to **send notifications for completing tests or a news feed/recommendations**
 
 
-
-## Dashboards
 
