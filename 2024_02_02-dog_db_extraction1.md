@@ -1002,30 +1002,33 @@ ORDER BY AvgCompleteTests DESC;
 The output didn't show an appreciable difference between number of tests completed by dogs of different breed types, however, statistical testing is required to have certainty.
     
   
-## 3. Assess whether dog breeds and neutering are related to the number of tests completed
+## Influence of the breed and neutering over the number of tests completed
 
-To explore the results we found above a little further, let's run some queries that relabel the breed_types according to "Pure_Breed" and "Not_Pure_Breed".  
-
-**Question 14: For each unique DogID, output its dog_guid, breed_type, number of completed tests, and use a CASE statement to include an extra column with a string that reads "Pure_Breed" whenever breed_type equals 'Pure Breed" and "Not_Pure_Breed" whenever breed_type equals anything else.  LIMIT your output to 50 rows for troubleshooting.**
+To explore the results found above a little further, the breed's type were relabeled according to "Pure_Breed" and "Not_Pure_Breed".  
 
 
-```python
-%%sql
+```sql
 SELECT
-    DISTINCT d.dog_guid AS dogID,
-    COUNT(c.created_at) AS NumberOfTests,
-    d.breed_type,
-    CASE d.breed_type
-        WHEN "Pure Breed" THEN "Pure_Breed"
-        ELSE "Not_Pure_Breed"
-        END AS PureBreed
-FROM
-    dogs d JOIN complete_tests c
-ON
-    d.dog_guid=c.dog_guid
-GROUP BY 
-    dogID
-LIMIT 50
+    TestsPerDog.PureBreed AS PureBreed,
+    COUNT(TestsPerDog.dogID) AS NumberOfDogs,
+    SUM(TestsPerDog.NumberOfTests) AS TotalTests,
+    AVG(TestsPerDog.NumberOfTests) AS AvgCompleteTests
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID,
+        COUNT(c.created_at) AS NumberOfTests,
+        d.breed_type,
+        CASE d.breed_type
+            WHEN "Pure Breed" THEN "Pure_Breed"
+            ELSE "Not_Pure_Breed"
+            END AS PureBreed
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE d.exclude IS NULL OR d.exclude=0
+      GROUP BY dogID
+     ) AS TestsPerDog
+GROUP BY PureBreed
+ORDER BY AvgCompleteTests DESC
+LIMIT 50;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -1102,342 +1105,35 @@ LIMIT 50
         <td>Cross Breed</td>
         <td>Not_Pure_Breed</td>
     </tr>
-    <tr>
-        <td>fd27c74e-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>14</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27c7d0-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27c852-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27c8d4-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27c956-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>11</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27cb72-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27cd98-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27ce1a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>7</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27cea6-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>2</td>
-        <td>Mixed Breed/ Other/ I Don&#x27;t Know</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27cf28-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27cfaa-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>7</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d02c-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d0b8-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>21</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d144-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>7</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d1c6-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>7</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d248-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>6</td>
-        <td>Popular Hybrid</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d2ca-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d34c-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d3d8-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d45a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>28</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d4dc-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>28</td>
-        <td>Mixed Breed/ Other/ I Don&#x27;t Know</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d770-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>25</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27d9fa-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Mixed Breed/ Other/ I Don&#x27;t Know</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27db08-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>14</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27db8a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>16</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27dc52-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>2</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27dd38-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e026-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>6</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e0d0-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>6</td>
-        <td>Mixed Breed/ Other/ I Don&#x27;t Know</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e1e8-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e31e-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>23</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e454-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>45</td>
-        <td>Mixed Breed/ Other/ I Don&#x27;t Know</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e580-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>33</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27e9a4-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>22</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27eae4-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27ed46-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>25</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27efb2-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>20</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27f110-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>7</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27f25a-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>6</td>
-        <td>Cross Breed</td>
-        <td>Not_Pure_Breed</td>
-    </tr>
-    <tr>
-        <td>fd27f4c6-7144-11e5-ba71-058fbc01cf0b</td>
-        <td>4</td>
-        <td>Pure Breed</td>
-        <td>Pure_Breed</td>
-    </tr>
 </table>
 
 
 
-**Question 15: Adapt your queries from Questions 7 and 14 to examine the relationship between breed_type and number of tests completed by Pure_Breed dogs and non_Pure_Breed dogs.  Your results should return 8336 DogIDs in the Not_Pure_Breed group.**
+Then, it was possible to find the the number of tests completed by breed type and whether or not the dogs were neutered.
 
 
-```python
-%%sql
-SELECT
-    TestsPerDog.PureBreed AS PureBreed,
-    COUNT(TestsPerDog.dogID) AS NumberOfDogs,
-    SUM(TestsPerDog.NumberOfTests) AS TotalTests,
-    AVG(TestsPerDog.NumberOfTests) AS AvgCompleteTests
-FROM (SELECT
-      DISTINCT d.dog_guid AS dogID,
-        COUNT(c.created_at) AS NumberOfTests,
-        d.breed_type,
-        CASE d.breed_type
-            WHEN "Pure Breed" THEN "Pure_Breed"
-            ELSE "Not_Pure_Breed"
-            END AS PureBreed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE  
-            d.exclude IS NULL OR d.exclude=0
-        GROUP BY 
-            dogID
-     ) AS TestsPerDog
-GROUP BY PureBreed
-ORDER BY AvgCompleteTests DESC
-```
-
-     * mysql://studentuser:***@localhost/dognitiondb
-    2 rows affected.
-
-
-
-
-
-<table>
-    <tr>
-        <th>PureBreed</th>
-        <th>NumberOfDogs</th>
-        <th>TotalTests</th>
-        <th>AvgCompleteTests</th>
-    </tr>
-    <tr>
-        <td>Not_Pure_Breed</td>
-        <td>8336</td>
-        <td>86922</td>
-        <td>10.4273</td>
-    </tr>
-    <tr>
-        <td>Pure_Breed</td>
-        <td>8865</td>
-        <td>92291</td>
-        <td>10.4107</td>
-    </tr>
-</table>
-
-
-
-**Question 16: Adapt your query from Question 15 to examine the relationship between breed_type, whether or not a dog was neutered (indicated in the dog_fixed field), and number of tests completed by Pure_Breed dogs and non_Pure_Breed dogs. There are DogIDs with null values in the dog_fixed column, so your results should have 6 rows, and the average number of tests completed by non-pure-breeds who are neutered is 10.5681.**
-
-
-```python
-%%sql
+```sql
 SELECT
     TestsPerDog.PureBreed AS PureBreed,
     TestsPerDog.neutered AS Neutered,
     COUNT(TestsPerDog.dogID) AS NumberOfDogs,
     SUM(TestsPerDog.NumberOfTests) AS TotalTests,
     AVG(TestsPerDog.NumberOfTests) AS AvgCompleteTests
-FROM (SELECT
-      DISTINCT d.dog_guid AS dogID,
-            d.dog_fixed AS neutered,
-            d.breed_type,
-            CASE d.breed_type
+FROM (SELECT DISTINCT 
+        d.dog_guid AS dogID,
+        d.dog_fixed AS neutered,
+        d.breed_type,
+        CASE d.breed_type
             WHEN "Pure Breed" THEN "Pure_Breed"
             ELSE "Not_Pure_Breed"
             END AS PureBreed,
-            COUNT(c.created_at) AS NumberOfTests
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE  
-            d.exclude IS NULL OR d.exclude=0
-        GROUP BY 
-            dogID
+        COUNT(c.created_at) AS NumberOfTests
+      FROM dogs d JOIN complete_tests c
+        ON d.dog_guid=c.dog_guid
+      WHERE d.exclude IS NULL OR d.exclude=0
+      GROUP BY dogID
      ) AS TestsPerDog
-GROUP BY 
-    PureBreed, Neutered
+GROUP BY PureBreed, Neutered;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
