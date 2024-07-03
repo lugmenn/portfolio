@@ -33,11 +33,13 @@ Second, data extraction was focused on understand the users that used the platfo
 
 * Most of the users are active during the weekend, specially on Sundays.
 
-* Most of the users are located in English speaking countries : USA, Canada, Australia, and the UK. A **site translation to other languages** could attract new potential customers overseas.
+* Most of the users are located in English speaking countries : USA, Canada, Australia, and the UK. A **website translation to other languages** could attract new potential customers from other countries. Half of the total Dognition users live in the USA.
 
-* Most of the American users are located in California. The **marketing team could develop strategies with California as a target** or other states with a similar population.
+* Most of the American users are located in California. The **marketing team could develop strategies with California as a target** or other states with a similar population type.
 
-* The Americans use the platform mostly during the afternoon and Sundays. These might be good time to **send notifications for completing tests or a news feed/recommendations**
+* The American users use the platform mostly during the afternoon, specially on Sundays. These might be a good time to **send reminders or notifications for completing tests, as well as having a news feed/sending out tips on dog care**.
+
+* The free trial didn't helped retaining customers. A possible solution would be to **mix the tests subcategories in the first testing stages to show more variety on the platform dinamics**.
 
 
 
