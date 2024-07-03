@@ -48,7 +48,7 @@ Dognition, a business focused on studying skills on dogs, wanted to increase the
 
 ### 5. Global sales report for a cycling business
 
-[Sharing the report on **PowerBI**]()
+[Sharing the report on **PowerBI**](https://app.powerbi.com/view?r=eyJrIjoiZDc0YzQ1NGMtODZkMi00NDhjLWI3OTAtOTdiZmEwMmRhMDk4IiwidCI6IjVmMjgyOTEwLTE3NmYtNDU5ZC1hYjdkLWI3NDRhYTZlZmMwNyIsImMiOjR9)
 
 Global sales report from cycling specialized business on Power Bi, including revenue from 2018-2021 period and sales by items category, location and month-to-month changes by fiscal year.
 
