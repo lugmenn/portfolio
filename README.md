@@ -50,7 +50,9 @@ Dognition, a business focused on studying skills on dogs, wanted to increase the
 
 [Sharing the report on **PowerBI**]()
 
-Global sales report from cycling specialized business on Power Bi, including revenue from 2018-2021 period and sales by items category, location and month-to-month changes by fiscal year. 
+Global sales report from cycling specialized business on Power Bi, including revenue from 2018-2021 period and sales by items category, location and month-to-month changes by fiscal year.
+
+![ss5](assets/p07-powerBI/00-pbidb.png)
 
 ### 6. Trends in the Melbourne Property Market
 
@@ -58,7 +60,7 @@ Global sales report from cycling specialized business on Power Bi, including rev
 
 The main objective was to deliver a report to showcase the trends and key metrics in the property market during 2017 and 2018 in some suburbs in the Melbourne Metropolitan Area, Australia. Overall, findings suggest there was an increase in the average house and apartment prices in most of the suburbs.
 
-![ss6](assets/p05-property auctions/00-cover.png)
+![ss6](assets/p05-property auctions/00-cover.png) 
 
 ### 7. Transforming raw sales data
 
