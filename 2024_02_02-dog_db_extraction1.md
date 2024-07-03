@@ -1028,11 +1028,11 @@ FROM (SELECT DISTINCT
      ) AS TestsPerDog
 GROUP BY PureBreed
 ORDER BY AvgCompleteTests DESC
-LIMIT 50;
+LIMIT 10;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
-    50 rows affected.
+    10 rows affected.
 
 
 
@@ -1197,158 +1197,22 @@ GROUP BY PureBreed, Neutered;
 
 
 
-These results suggest that although a dog's breed_type doesn't seem to have a strong relationship with how many tests a dog completed, neutered dogs, on average, seem to finish 1-2 more tests than non-neutered dogs.  It may be fruitful to explore further whether this effect is consistent across different segments of dogs broken up according to other variables.  If the effects are consistent, the next step would be to seek evidence that could clarify whether neutered dogs are finishing more tests due to traits that arise when a dog is neutered, or instead, whether owners who are more likely to neuter their dogs have traits that make it more likely they will want to complete more tests.
+Eventhough a dog's breed_type doesn't seem to have a strong relationship with how many tests a dog completed, neutered dogs, on average, seemed to finish 1-2 more tests than non-neutered dogs. It is reasonable to explore this variable along with other characteristics, and assess whether it is because of the dogs' characteristics or because of their owners behavior and their own interest in completing more tests. 
 
-
-## 4. Other dog features that might be related to the number of tests completed, and a note about using averages as summary metrics
-
-Two other dog features included in our sPAP were speed of game completion and previous behavioral training.  Examing the relationship between the speed of game completion and number of games completed is best achieved through creating a scatter plot with a best fit line and/or running a statistical regression analysis.  It is possible to achieve the statistical regression analysis through very advanced SQL queries, but the strategy that would be required is outside the scope of this course.  Therefore, I would recommend exporting relevant data to a program like Tableau, R, or Matlab in order to assess the relationship between the speed of game completion and number of games completed.  
-
-Unfortunately, there is no field available in the Dognition data that is relevant to a dog's previous behavioral training, so more data would need to be collected to examine whether previous behavioral training is related to the number of Dognition tests completed.
-
-One last issue I would like to address in this lesson is the issue of whether an average is a good summary to use to represent the values of a certain group.  Average calculations are very sensitive to extreme values, or outliers, in the data.  This video provides a nice demonstration of how sensitive averages can be:
-
-http://www.statisticslectures.com/topics/outliereffects/
-
-Ideally, you would summarize the data in a group using a median calculation when you either don't know the distribution of values in your data or you already know that outliers are present (the definition of median is covered in the video above).  Unfortunately, medians are more computationally intensive than averages, and there is no pre-made function that allows you to calculate medians using SQL.  If you wanted to calculate the median, you would need to use an advanced strategy such as the ones described here:
-
-https://www.periscopedata.com/blog/medians-in-sql.html
-
-Despite the fact there is no simple way to calculate medians using SQL, there is a way to get a hint about whether average values are likely to be wildly misleading.  As described in the first video (http://www.statisticslectures.com/topics/outliereffects/), strong outliers lead to large standard deviation values.  Fortunately, we *CAN* calculate standard deviations in SQL easily using the STDDEV function.  Therefore, it is good practice to include standard deviation columns with your outputs so that you have an idea whether the average values outputted by your queries are trustworthy.  Whenever standard deviations are a significant portion of the average values of a field, and certainly when standard deviations are larger than the average values of a field, it's a good idea to export your data to a program that can handle more sophisticated statistical analyses before you interpret any results too strongly.  
-
-Let's practice including standard deviations in our queries and interpretting their values.
-
-**Question 17: Adapt your query from Question 7 to include a column with the standard deviation for the number of tests completed by each Dognition personality dimension.**
+Another interesting factor to study was whether the breed type could have had effects on the time tests were completed. This time, the standard deviation was also calculated.
 
 
 
-```python
-%%sql
-SELECT
-    TestsPerDog.dimension AS personality,
-    SUM(TestsPerDog.tests_completed) AS NumberOfTests,
-    AVG(TestsPerDog.tests_completed) AS AvgCompleteTests,
-    COUNT(TestsPerDog.dogID) AS NumberOfDogs,
-    STDDEV(TestsPerDog.tests_completed) AS SDTests
-FROM (SELECT 
-        DISTINCT d.dog_guid AS dogID, 
-            d.dimension AS dimension, 
-            COUNT(c.created_at) AS tests_completed
-        FROM
-            dogs d JOIN complete_tests c
-        ON
-            d.dog_guid=c.dog_guid
-        WHERE 
-            (d.dimension IS NOT NULL AND d.dimension<>"") AND 
-            (d.exclude IS NULL OR d.exclude=0)
-        GROUP BY 
-            dogID
-     ) AS TestsPerDog
-GROUP BY personality
-```
-
-     * mysql://studentuser:***@localhost/dognitiondb
-    9 rows affected.
-
-
-
-
-
-<table>
-    <tr>
-        <th>personality</th>
-        <th>NumberOfTests</th>
-        <th>AvgCompleteTests</th>
-        <th>NumberOfDogs</th>
-        <th>SDTests</th>
-    </tr>
-    <tr>
-        <td>ace</td>
-        <td>9451</td>
-        <td>23.5100</td>
-        <td>402</td>
-        <td>5.489578593285024</td>
-    </tr>
-    <tr>
-        <td>charmer</td>
-        <td>14623</td>
-        <td>23.3594</td>
-        <td>626</td>
-        <td>5.191866549087367</td>
-    </tr>
-    <tr>
-        <td>einstein</td>
-        <td>2533</td>
-        <td>23.2385</td>
-        <td>109</td>
-        <td>5.315545977410012</td>
-    </tr>
-    <tr>
-        <td>expert</td>
-        <td>6395</td>
-        <td>23.4249</td>
-        <td>273</td>
-        <td>4.7589170678086665</td>
-    </tr>
-    <tr>
-        <td>maverick</td>
-        <td>5578</td>
-        <td>22.7673</td>
-        <td>245</td>
-        <td>4.735337746508803</td>
-    </tr>
-    <tr>
-        <td>protodog</td>
-        <td>12282</td>
-        <td>22.9570</td>
-        <td>535</td>
-        <td>5.374222171922527</td>
-    </tr>
-    <tr>
-        <td>renaissance-dog</td>
-        <td>10668</td>
-        <td>23.0410</td>
-        <td>463</td>
-        <td>4.950777215501498</td>
-    </tr>
-    <tr>
-        <td>socialite</td>
-        <td>18295</td>
-        <td>23.0997</td>
-        <td>792</td>
-        <td>4.974825507002216</td>
-    </tr>
-    <tr>
-        <td>stargazer</td>
-        <td>7067</td>
-        <td>22.7968</td>
-        <td>310</td>
-        <td>4.825402130724963</td>
-    </tr>
-</table>
-
-
-
-The standard deviations are all around 20-25% of the average values of each personality dimension, and they are not appreciably different across the personality dimensions, so the average values are likely fairly trustworthy.  Let's try calculating the standard deviation of a different measurement.
-
-**Question 18: Write a query that calculates the average amount of time it took each dog breed_type to complete all of the tests in the exam_answers table. Exclude negative durations from the calculation, and include a column that calculates the standard deviation of durations for each breed_type group:**
-
-
-
-```python
-%%sql
+```sql
 SELECT 
     d.breed_type AS BreedType,
     AVG(TIMESTAMPDIFF(minute,e.start_time, e.end_time)) AS AvgDuration,
     STDDEV(TIMESTAMPDIFF(minute,e.start_time, e.end_time)) AS SDDuration
-FROM 
-    dogs d JOIN exam_answers e
-    ON
-    d.dog_guid=e.dog_guid
+FROM dogs d JOIN exam_answers e
+  ON d.dog_guid=e.dog_guid
 WHERE
     TIMESTAMPDIFF(minute,e.start_time, e.end_time)>0
-GROUP BY
-    breed_type
+GROUP BY breed_type;
 ```
 
      * mysql://studentuser:***@localhost/dognitiondb
@@ -1388,11 +1252,7 @@ GROUP BY
 
 
 
-This time many of the standard deviations have larger magnitudes than the average duration values.  This suggests  there are outliers in the data that are significantly impacting the reported average values, so the average values are not likely trustworthy. These data should be exported to another program for more sophisticated statistical analysis.
+Many of the standard deviations have larger magnitudes than the average duration values.  This suggests  there are outliers in the data that are significantly impacting the reported average values, so the average values are not likely trustworthy. These data should be exported to R or Python for more sophisticated statistical analysis.
 
-**In the next lesson, we will write queries that assess the relationship between testing circumstances and the number of tests completed.  Until then, feel free to practice any additional queries you would like to below!**
-
-
-```python
 
 ```
