@@ -16,7 +16,17 @@ Rough estimate in the changes of profits after converting certain long-term rent
 
 ![ss1](assets/01-ss1.png)
 
-### 2. Improvement of Bellabeat devices and their user engagement
+### 2. Quick insights for the Dognition development team
+
+[Finding insights with **SQL**](2024_02_02-dog_db_extraction1.md)
+
+[Communicating findings with **Tableau**](2024_02_03-dog_db_analysis.md)
+
+Dognition, a business focused on studying skills on dogs, wanted to increase the number of tests completed by its users. For this, a database was analyzed to find if there are certain users' and dogs' characteristics that influence the platform usage in order to develop succesful marketing strategies and content creation.
+
+![ss4](assets/p04-dataextraction/03-dognitioncover.png)
+
+### 3. Improvement of Bellabeat devices and their user engagement
 
 [Data transformation with **Python**](2024_05_bellabeat_cleaning.md)
 
@@ -26,7 +36,7 @@ Shared insights and recommended business actions based on the analysis of activi
 
 ![ss2](assets/09_bellabeatcover.png)
 
-### 3. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' win/lost ratio
+### 4. Finding the correlation between different North-American metropolitan areas' population and their Big Four teams' win/lost ratio
 
 [NFL teams Win/Lose ratio correlation analysis using **Python/Pandas**](2024_05_02-NY_NFLcorrelation.md)
 
@@ -35,16 +45,6 @@ Shared insights and recommended business actions based on the analysis of activi
 This analysis consisted of finding through the Pearson correlation how closely related are the Metropolitan Area population size and the Win/Lose ratio of the teams from each league. Is it reasonable to expect a team's results based on its city population or not?
 
 ![ss3](assets/03-correlationcover.png)
-
-### 4. Quick insights for the Dognition development team
-
-[Finding insights with **SQL**](2024_02_02-dog_db_extraction1.md)
-
-[Communicating findings with **Tableau**](2024_02_03-dog_db_analysis.md)
-
-Dognition, a business focused on studying skills on dogs, wanted to increase the number of tests completed by its users. For this, a database was analyzed to find if there are certain users' and dogs' characteristics that influence the platform usage in order to develop succesful marketing strategies and content creation.
-
-![ss4](assets/p04-dataextraction/03-dognitioncover.png)
 
 ### 5. Global sales report for a cycling business
 
