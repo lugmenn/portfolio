@@ -38,7 +38,13 @@ This analysis consisted of finding through the Pearson correlation how closely r
 
 ### 4. Quick insights for the Dognition development team
 
-[Using **SQL** to answer business questions](2024_02_02-dog_db_extraction1.md)
+[Finding insights with **SQL**](2024_02_02-dog_db_extraction1.md)
+
+[Communicating findings with **Tableau**](2024_02_03-dog_db_analysis.md)
+
+Data from a Dognition Database was analyzed to find if there are certain user characteristics that influence the platform usage with the objective of development of marketing strategies.
+
+![ss4](assets/p04-dataextraction/03-dognitioncover.png)
 
 ### 5. Global sales report for a cycling business
 
