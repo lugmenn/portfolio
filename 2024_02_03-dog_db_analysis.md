@@ -9,7 +9,7 @@ The analysis was split into two parts:
 
 First, data extraction was focused on understanding which dogs' characteristics influenced how many tests were completed ([read the report](https://lugmenn.github.io/portfolio/2024_02_02-dog_db_extraction1.html)).
 
-Second, data extraction was focused on understand the users that used the platform: when do they use it the most, where are they located, how much do they use it and whether or not the free plan helped retaining them as users ([read the full **SQL** script](https://github.com/lugmenn/Insights-for-Dognition/blob/main/03_UserCircumstances_v_CompletedTests.sql))
+Second, data extraction was focused on understand the users that used the platform: when do they use it the most, where are they located, how much do they use it and whether or not the free plan helped retaining them as users ([read the full **SQL** script](https://github.com/lugmenn/Insights-for-Dognition/blob/main/03_UserCircumstances_v_CompletedTests.sql)).
 
 ## Findings in the Dogs' Data
 
