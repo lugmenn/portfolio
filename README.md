@@ -1,6 +1,6 @@
 # Data Analysis
 
-Hello there!
+Hello there! These are the projects I've completed to polish and improve my technical and analytical skills.
 
 Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R**, **Google Cloud Platform**
 
