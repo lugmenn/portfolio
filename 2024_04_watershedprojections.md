@@ -20,7 +20,7 @@ The final calculations of the net profits had to consider certain expenses and t
 
 * Average length of guest stay is 3 nights
 
-The data extraction and part of its transformation was completed using SQL queries. Then, it was loaded into Excel, where its transformation was completed for the analysis.
+The data extraction and part of its transformation was completed using [**SQL queries**](https://lugmenn.github.io/portfolio/2024_03_watershed_database). Then, it was loaded into Excel, where its transformation was completed for the analysis.
 
 ## Data processing and analysis
 
