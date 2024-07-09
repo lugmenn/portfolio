@@ -10,7 +10,7 @@ Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R*
 
 [Data extraction using **SQL** queries](2024_03_watershed_database) 
 
-[Sharing business projections through **Tableau**](https://public.tableau.com/views/WatershedProject_17105411802030/Dashboard1?:language=es-ES&:sid=&:display_count=n&:origin=viz_share_link)
+[Calculating and sharing business projections](2024_04_watershedprojections.md)
 
 Rough estimate in the changes of profits after converting certain long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location and their expected occupancy rates throughout the year.
 
