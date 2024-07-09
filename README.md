@@ -14,7 +14,7 @@ Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R*
 
 Rough estimate in the changes of profits after converting 5.7% of long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location, their expected occupancy rates throughout the year and the return of investment(ROI).
 
-![ss1](assets/01-ss1.png)
+![ss1](assets/p01-reanalysis/00-wpcover.png)
 
 ### 2. Quick insights for the Dognition development team
 
