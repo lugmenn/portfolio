@@ -8,11 +8,11 @@ Due to this, each long-term property had to be compared to a similar one used fo
 
 The final calculations of the net profits had to consider certain expenses and the ROI:
 
-* Capital expenditure: $30, 000, with a depreciation period of 5 years
+* Capital expenditure: $30,000, with a depreciation period of 5 years
 
-* Utilities cost (per year): $3, 600
+* Utilities cost (per year): $3,600
 
-* Maintenance and utilities replacement (each year after first year): $6, 000
+* Maintenance and utilities replacement (each year after first year): $6,000
 
 * Cleaning costs after each guest visit: $100
 
