@@ -16,7 +16,6 @@ The final calculations of the net profits had to consider certain expenses and t
 
 * Cleaning costs after each guest visit: $100
 
-
 * Transaction fees (taxes and platform comissions): 30%
 
 * Average length of guest stay is 3 nights
@@ -29,15 +28,23 @@ Before making any analysis and evaluation, each annual cost had to be adjusted t
 
 For this, I tried to find out if the expected annual occupancy for short-term properties ratio is directly related to the nightly cost, so a linear regression model was generated.
 
+[lreg1](assets/p01-reanalysis/01-linreg1.png)
+
 As visible, the variables do not have a strong relationship because another factor is involved in the available costs: the properties' location. This created the need to normalize the costs based on its 90th and 10th percentile distribution (which varied across cities).
 
 After, this, the linear regression worked better as a prediction model to calculate the rough estimates for annual profits, optimizing the rent cost by the expected occupancy ratios.
 
+[lreg2](assets/p01-reanalysis/02-linreg-normalized.png)
+
 The annual cost of rent was optimized into cost of rent per night using these percentiles, which then, considering the financial restrictions, were used to calculate net change in profits and net change in cash flows during the conversion year (with the initial investment), and then for the following years.
+
+[profits](assets/p01-reanalysis/03-profitcalc.png)
 
 ## Sharing the findings through Tableau
 
-Click here to read the dashboard in Tableau Public.
+[Click here to read the dashboard in Tableau Public](https://public.tableau.com/views/WatershedProject_17105411802030/Dashboard1?:language=es-ES&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link).
+
+[db](assets/p01-reanalysis/04-dashboard.png)
 
 In total, 41 properties out of 234 (5.7%) were apt for conversion, with an initial total investment of $1.23 M to generate a profit of $1.13 M each following year.
 
