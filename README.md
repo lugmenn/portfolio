@@ -12,7 +12,7 @@ Technical Skills: **Excel**, **SQL**, **Tableau**, **PowerBI**, **Python**, **R*
 
 [Calculating and sharing business projections](2024_04_watershedprojections.md)
 
-Rough estimate in the changes of profits after converting certain long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location and their expected occupancy rates throughout the year.
+Rough estimate in the changes of profits after converting 5.7% of long-term rental properties into the short-term rental market. The approximate change in profit analysis took into account the properties' location, their expected occupancy rates throughout the year and the return of investment(ROI).
 
 ![ss1](assets/01-ss1.png)
 
