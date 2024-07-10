@@ -2,9 +2,9 @@
 
 ## Business problem and financial restrictions
 
-Watershed Properties deals with the management of its clients' real estate properties. One of them was interested in knowing how much could the profits increase if he entered the short-term rental market (on platforms like Airbnb). At the time of the petition, he owned 234 properties set for long-term rents. The client was open to convert those properties, from long-term to short-term rentals, in which the annual profit had an increase of at least $6,000.
+Watershed Properties deals with the management of its clients' real estate properties. One of them was interested in knowing how much could the profits increase if he entered the short-term rental market (on platforms like Airbnb). At the time of the petition, he owned 234 properties set for long-term rents. The client was open to convert those properties, from long-term to short-term rentals, in which the annual profit had an increase of at least $6,000. Due to this, each long-term property had to be compared to a similar one used for short-term rents, considering its property type, location and cost.
 
-Due to this, each long-term property had to be compared to a similar one used for short-term rents, considering its property type, location and cost.
+The data extraction and part of its transformation was completed using [SQL queries](https://lugmenn.github.io/portfolio/2024_03_watershed_database). Then, it was loaded into Excel, where its transformation was completed for the analysis.
 
 The final calculations of the net profits had to consider certain expenses and the ROI:
 
@@ -19,8 +19,6 @@ The final calculations of the net profits had to consider certain expenses and t
 * Transaction fees (taxes and platform comissions): 30%
 
 * Average length of guest stay is 3 nights
-
-The data extraction and part of its transformation was completed using [**SQL queries**](https://lugmenn.github.io/portfolio/2024_03_watershed_database). Then, it was loaded into Excel, where its transformation was completed for the analysis.
 
 ## Data processing and analysis
 
